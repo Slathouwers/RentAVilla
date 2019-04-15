@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace UnitTestProject1
+namespace SndrLth.RentAVilla.DomainTests
 {
     [TestClass]
     public class PeriodeFixtures

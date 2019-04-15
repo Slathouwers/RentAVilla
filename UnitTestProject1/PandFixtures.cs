@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SndrLth.RentAVilla.Domain;
 
-namespace UnitTestProject1
+namespace SndrLth.RentAVilla.DomainTests
 {
     [TestClass]
     public class PandFixtures

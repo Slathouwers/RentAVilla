@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SndrLth.RentAVilla.Domain", "SndrLth.RentAVilla.Domain\SndrLth.RentAVilla.Domain.csproj", "{1F8D82F1-F8F7-4580-BCAB-FA8D5C1FA01E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "SndrLth.RentAVilla.Domain\Domain.csproj", "{1F8D82F1-F8F7-4580-BCAB-FA8D5C1FA01E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{E817C6FC-2A21-4B31-B973-CE36F424F7F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Tests", "UnitTestProject1\Domain.Tests.csproj", "{E817C6FC-2A21-4B31-B973-CE36F424F7F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
