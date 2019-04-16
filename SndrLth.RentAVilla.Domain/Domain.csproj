@@ -50,9 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\ActieveLanden.cs" />
     <Compile Include="Pand.cs" />
     <Compile Include="Periode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Enums\Tarief.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
