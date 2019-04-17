@@ -50,8 +50,9 @@ namespace SndrLth.RentAVilla.DomainTests
 
 
             //prijs voor 1 overnachting afhankelijk van de periode waarin gehuurd wordt
-            p.TariefGebondenPrijsPerNacht[TariefType.Laagseizoen] = 50.00;
-            Assert.IsTrue(p.TariefGebondenPrijsPerNacht[TariefType.Laagseizoen] == 50.00);
+            Prijs laagseizoenPerNacht = new Prijs(50.00, PrijsEenheid.PerNacht);
+            p.TariefGebondenPrijsPerNacht[TariefType.Laagseizoen] = laagseizoenPerNacht;
+            Assert.IsTrue(p.TariefGebondenPrijsPerNacht[TariefType.Laagseizoen].Waarde == 50.00);
 
 
             
@@ -63,18 +64,18 @@ namespace SndrLth.RentAVilla.DomainTests
             
             //bedrag waarborg
             p.SetWaarborg(600.00);
-            Assert.IsTrue(p.Waarborg.Waarde == 600.00 && p.Waarborg.ToepassingsEenheid.HasFlag(PrijsEenheid.PerReservatie);
+            Assert.IsTrue(p.Waarborg.Waarde == 600.00 && p.Waarborg.ToepassingsEenheid.HasFlag(PrijsEenheid.PerReservatie));
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => p.SetWaarborg(-100.00));
 
             //eventuele toeslag per overnachting per persoon
-            p.ToeslagPersoonsOvernachting = 15.00;
-            Assert.IsTrue(p.PersoonstoeslagPerNacht == 15.00);
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => p.ToeslagPersoonsOvernachting = -15.00);
+            p.SetPersoonstoeslagPerNacht(15.00);
+            Assert.IsTrue(p.PersoonstoeslagPerNacht.Waarde == 15.00);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => p.SetPersoonstoeslagPerNacht( -15.00));
 
             //prijs voor eindschoonmaak
-            p.Schoonmaak = 20.00;
-            Assert.IsTrue(p.Schoonmaak == 20.00);
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => p.Schoonmaak = -15.00);
+            p.SetSchoonmaakPrijs ( 20.00);
+            Assert.IsTrue(p.SchoonmaakPrijs.Waarde == 20.00);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => p.SetSchoonmaakPrijs(-15.00));
 
             //Pandspecifieke Tarief en Planningsschema -> Laagseizoen vanaf 15/03, Onbeschikbaar vanaf 10/06, Tussenseizoen vanaf 20/07 etc...
             p.TariefKalender = new Dictionary<DateTime, TariefType>();
@@ -82,7 +83,7 @@ namespace SndrLth.RentAVilla.DomainTests
             p.TariefKalender.Add(DateTime.Parse("16/05/2019"), TariefType.Laagseizoen);
             p.TariefKalender.Add(DateTime.Parse("16/06/2019"), TariefType.Hoogseizoen);
 
-            //TODO: NOT WORKING!!
+
             DateTime testdate = DateTime.Parse("15/06/2019"); //Laagseizoen
             DateTime testdate2 = DateTime.Parse("15/05/2019"); // Onbeschikbaar
 
@@ -91,7 +92,7 @@ namespace SndrLth.RentAVilla.DomainTests
             foreach (DateTime key in p.TariefKalender.Keys)
             {
                 if (key > testdate) continue;
-                if (key.Subtract(testdate) <= minimum)
+                if (key.Subtract(testdate) >= minimum)
                 {
                     minimum = key.Subtract(testdate);
                     tariefKey = key;

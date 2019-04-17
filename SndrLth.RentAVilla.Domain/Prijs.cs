@@ -8,7 +8,17 @@ namespace SndrLth.RentAVilla.Domain
 {
     public class Prijs
     {
-        public double Waarde { get; set; } = 0.00;
+        private double _waarde = 0.00;
+
+        public double Waarde
+        {
+            get => _waarde;
+            set
+            {
+                if (value >= 0) _waarde = value;
+                else throw new ArgumentOutOfRangeException("Negative price");
+            }
+        }
         public PrijsEenheid ToepassingsEenheid { get; set; } = PrijsEenheid.None;
         public Prijs(double value, PrijsEenheid toepassingsEenheid)
         {

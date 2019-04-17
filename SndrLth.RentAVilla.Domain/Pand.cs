@@ -25,10 +25,10 @@ namespace SndrLth.RentAVilla.Domain
         public string Regio { get; set; }
         public string Plaats { get; set; }
 
-        public Prijs Schoonmaak { get; private set; } = new Prijs(0, PrijsEenheid.PerReservatie);
-        public void SetSchoonmaak(double value)
+        public Prijs SchoonmaakPrijs { get; private set; } = new Prijs(0, PrijsEenheid.PerReservatie);
+        public void SetSchoonmaakPrijs(double value)
         {
-            Schoonmaak.Waarde = value;
+            SchoonmaakPrijs.Waarde = value;
         }
 
         public Prijs Waarborg { get; private set; } = new Prijs(0, PrijsEenheid.PerReservatie);
