@@ -8,98 +8,127 @@ namespace SndrLth.RentAVilla.DomainTests
     [TestClass]
     public class PandFixtures
     {
+        public Pand pand { get; set; }
         [TestMethod]
-        public void PropertyTests()
+        public void NewPandCreated()
         {
-            Pand p = new Pand();
-            Assert.IsInstanceOfType(p, typeof(Pand));
-            
-            //Land
-            p.Land = ActieveLanden.Frankrijk;
-            Assert.IsTrue(p.Land.ToString().Equals("Frankrijk"));
-            p.Land = ActieveLanden.Italie;
-            Assert.IsTrue(p.Land.ToString().Equals("Italie"));
-            p.Land = ActieveLanden.Portugal;
-            Assert.IsTrue(p.Land.ToString().Equals("Portugal"));
-            p.Land = ActieveLanden.Spanje;
-            Assert.IsTrue(p.Land.ToString().Equals("Spanje"));
-            
+            pand = new Pand();
+            Assert.IsInstanceOfType(pand, typeof(Pand));
+        }
+        [TestMethod]
+        public void LandSetsToActieveLandenAndReturnsLand()
+        {
+            pand.Land = ActieveLanden.Frankrijk;
+            Assert.IsTrue(pand.Land.ToString().Equals("Frankrijk"));
+            pand.Land = ActieveLanden.Italie;
+            Assert.IsTrue(pand.Land.ToString().Equals("Italie"));
+            pand.Land = ActieveLanden.Portugal;
+            Assert.IsTrue(pand.Land.ToString().Equals("Portugal"));
+            pand.Land = ActieveLanden.Spanje;
+            Assert.IsTrue(pand.Land.ToString().Equals("Spanje"));
+        }
+        [TestMethod]
+        public void RegioAndPlaatsStringPropertiesGetaAndSet()
+        {
             //Regio
-            p.Regio = "Cote D'Azure";
-            Assert.IsTrue(p.Regio.ToString().Equals("Cote D'Azure"));
-            p.Regio = "Catalonia";
-            Assert.IsTrue(p.Regio.ToString().Equals("Catalonia"));
-            
+            pand.Regio = "Cote D'Azure";
+            Assert.IsTrue(pand.Regio.ToString().Equals("Cote D'Azure"));
+            pand.Regio = "Catalonia";
+            Assert.IsTrue(pand.Regio.ToString().Equals("Catalonia"));
+
             //Plaats
-            p.Plaats = "Marseille";
-            Assert.IsTrue(p.Plaats.ToString().Equals("Marseille"));
-            p.Plaats = "Barcelona";
-            Assert.IsTrue(p.Plaats.ToString().Equals("Barcelona"));
-           
+            pand.Plaats = "Marseille";
+            Assert.IsTrue(pand.Plaats.ToString().Equals("Marseille"));
+            pand.Plaats = "Barcelona";
+            Assert.IsTrue(pand.Plaats.ToString().Equals("Barcelona"));
+        }
+        [TestMethod]
+        public void MaxAantalPersonenCanSetAndGet()
+        {
             //Aantal Personen
-            p.MaxAantalPersonen = 6;
-            Assert.IsTrue(p.MaxAantalPersonen == 6);
-            p.MaxAantalPersonen = 4;
-            Assert.IsTrue(p.MaxAantalPersonen == 4);
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => p.MaxAantalPersonen = -1);
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => p.MaxAantalPersonen = 0);
-            //minimumduur verblijf(eventueel afhankelijk van de periode waarin gehuurd wordt)
-            p.MinVerblijfsduur = 4;
-            Assert.IsTrue(p.MinVerblijfsduur == 4);
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => p.MinVerblijfsduur = -1);
+            pand.MaxAantalPersonen = 6;
+            Assert.IsTrue(pand.MaxAantalPersonen == 6);
+            pand.MaxAantalPersonen = 4;
+            Assert.IsTrue(pand.MaxAantalPersonen == 4);
+        }
+        [TestMethod]
+        public void NegativeMaxAantalPersonenThrowsArgOutOfRange()
+        {
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => pand.MaxAantalPersonen = -1);
+        }
 
+        public void ZeroMaxAantalPersonenThrowsArgOutOfRangeException()
+        {
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => pand.MaxAantalPersonen = 0);
 
+        }
+        [TestMethod]
+        public void MinVerblijfsduurCanSetAndGet()
+        {
+            //Aantal Personen
+            pand.MinVerblijfsduur = 4;
+            Assert.IsTrue(pand.MinVerblijfsduur == 4);
+        }
+        [TestMethod]
+        public void NegativeMinVerblijfsduurThrowsArgOutOfRange()
+        {
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => pand.MinVerblijfsduur = -1);
+        }
+        [TestMethod]
+        public void TariefTypesExist()
+        {
+
+            ////Tarieftypen voor prijsbepaling
+            //TariefType onbeschikbaar = TariefType.Onbeschikbaar;
+            //TariefType hoogseizoen = TariefType.Hoogseizoen;
+            //TariefType tussenseizoen = TariefType.Tussenseizoen;
+            //TariefType laagseizoen = TariefType.Laagseizoen;
+        }
+        [TestMethod]
+        public void TariefGebondenPrijsPerNachtAndCanBeSet()
+        {
             //prijs voor 1 overnachting afhankelijk van de periode waarin gehuurd wordt
             Prijs laagseizoenPerNacht = new Prijs(50.00, PrijsEenheid.PerNacht);
-            p.TariefGebondenPrijsPerNacht[TariefType.Laagseizoen] = laagseizoenPerNacht;
-            Assert.IsTrue(p.TariefGebondenPrijsPerNacht[TariefType.Laagseizoen].Waarde == 50.00);
-
-
-            
-            //Tarieftypen voor prijsbepaling
-            TariefType onbeschikbaar = TariefType.Onbeschikbaar;
-            TariefType hoogseizoen = TariefType.Hoogseizoen;
-            TariefType tussenseizoen = TariefType.Tussenseizoen;
-            TariefType laagseizoen = TariefType.Laagseizoen;
-            
-            //bedrag waarborg
-            p.SetWaarborg(600.00);
-            Assert.IsTrue(p.Waarborg.Waarde == 600.00 && p.Waarborg.ToepassingsEenheid.HasFlag(PrijsEenheid.PerReservatie));
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => p.SetWaarborg(-100.00));
-
-            //eventuele toeslag per overnachting per persoon
-            p.SetPersoonstoeslagPerNacht(15.00);
-            Assert.IsTrue(p.PersoonstoeslagPerNacht.Waarde == 15.00);
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => p.SetPersoonstoeslagPerNacht( -15.00));
-
-            //prijs voor eindschoonmaak
-            p.SetSchoonmaakPrijs ( 20.00);
-            Assert.IsTrue(p.SchoonmaakPrijs.Waarde == 20.00);
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => p.SetSchoonmaakPrijs(-15.00));
-
-            //Pandspecifieke Tarief en Planningsschema -> Laagseizoen vanaf 15/03, Onbeschikbaar vanaf 10/06, Tussenseizoen vanaf 20/07 etc...
-            p.TariefKalender = new Dictionary<DateTime, TariefType>();
-            p.TariefKalender.Add(DateTime.Parse("16/04/2019"), TariefType.Onbeschikbaar);
-            p.TariefKalender.Add(DateTime.Parse("16/05/2019"), TariefType.Laagseizoen);
-            p.TariefKalender.Add(DateTime.Parse("16/06/2019"), TariefType.Hoogseizoen);
-
-
-            DateTime testdate = DateTime.Parse("15/06/2019"); //Laagseizoen
-            DateTime testdate2 = DateTime.Parse("15/05/2019"); // Onbeschikbaar
-
-            TimeSpan minimum = TimeSpan.Zero;
-            DateTime tariefKey = DateTime.MinValue;
-            foreach (DateTime key in p.TariefKalender.Keys)
-            {
-                if (key > testdate) continue;
-                if (key.Subtract(testdate) >= minimum)
-                {
-                    minimum = key.Subtract(testdate);
-                    tariefKey = key;
-                }
-            }
-
-            Assert.IsTrue(p.TariefKalender[tariefKey] == TariefType.Laagseizoen);
+            pand.TariefGebondenPrijsPerNacht[TariefType.Laagseizoen] = laagseizoenPerNacht;
+            Assert.IsTrue(pand.TariefGebondenPrijsPerNacht[TariefType.Laagseizoen].Waarde == 50.00);
         }
+//        //bedrag waarborg
+//        pand.SetWaarborg(600.00);
+//        Assert.IsTrue(pand.Waarborg.Waarde == 600.00 && pand.Waarborg.ToepassingsEenheid.HasFlag(PrijsEenheid.PerReservatie));
+//        Assert.ThrowsException<ArgumentOutOfRangeException>(() => pand.SetWaarborg(-100.00));
+
+//        //eventuele toeslag per overnachting per persoon
+//        pand.SetPersoonstoeslagPerNacht(15.00);
+//        Assert.IsTrue(pand.PersoonstoeslagPerNacht.Waarde == 15.00);
+//        Assert.ThrowsException<ArgumentOutOfRangeException>(() => pand.SetPersoonstoeslagPerNacht(-15.00));
+
+//        //prijs voor eindschoonmaak
+//        pand.SetSchoonmaakPrijs(20.00);
+//        Assert.IsTrue(pand.SchoonmaakPrijs.Waarde == 20.00);
+//        Assert.ThrowsException<ArgumentOutOfRangeException>(() => pand.SetSchoonmaakPrijs(-15.00));
+
+//        //Pandspecifieke Tarief en Planningsschema -> Laagseizoen vanaf 15/03, Onbeschikbaar vanaf 10/06, Tussenseizoen vanaf 20/07 etc...
+//        pand.TariefKalender = new Dictionary<DateTime, TariefType>();
+//        pand.TariefKalender.Add(DateTime.Parse("16/04/2019"), TariefType.Onbeschikbaar);
+//        pand.TariefKalender.Add(DateTime.Parse("16/05/2019"), TariefType.Laagseizoen);
+//        pand.TariefKalender.Add(DateTime.Parse("16/06/2019"), TariefType.Hoogseizoen);
+
+//        //Test date lookup in tariefkalender
+//        DateTime testdate = DateTime.Parse("15/06/2019"); //Laagseizoen
+//        DateTime testdate2 = DateTime.Parse("15/05/2019"); // Onbeschikbaar
+
+//        TimeSpan minimum = TimeSpan.Zero;
+//        DateTime tariefKey = DateTime.MinValue;
+//        foreach (DateTime key in pand.TariefKalender.Keys)
+//        {
+//            if (key > testdate) continue;
+//            if (key.Subtract(testdate) >= minimum)
+//            {
+//                minimum = key.Subtract(testdate);
+//                tariefKey = key;
+//            }
+//}
+
+//Assert.IsTrue(pand.TariefKalender[tariefKey] == TariefType.Laagseizoen);
     }
 }
