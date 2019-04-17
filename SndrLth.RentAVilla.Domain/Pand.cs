@@ -8,15 +8,42 @@ namespace SndrLth.RentAVilla.Domain
 {
     public class Pand
     {
+        public Dictionary<TariefType, Prijs> TariefGebondenPrijsPerNacht { get; private set; }
+        public Pand()
+        {
+            TariefGebondenPrijsPerNacht = new Dictionary<TariefType, Prijs>();
+            foreach (TariefType tar in Enum.GetValues(typeof(TariefType)))
+            {
+                TariefGebondenPrijsPerNacht.Add(tar, new Prijs(0.00,PrijsEenheid.PerNacht));
+            }
+
+        }
         private int _maxAantalPersonen;
         private int _minVerblijfsduur;
-        private double _toeslagPersoonsOvernachting;
-        private double _waarborg;
-        private double _schoonmaak;
 
         public ActieveLanden Land { get; set; }
         public string Regio { get; set; }
         public string Plaats { get; set; }
+
+        public Prijs Schoonmaak { get; private set; } = new Prijs(0, PrijsEenheid.PerReservatie);
+        public void SetSchoonmaak(double value)
+        {
+            Schoonmaak.Waarde = value;
+        }
+
+        public Prijs Waarborg { get; private set; } = new Prijs(0, PrijsEenheid.PerReservatie);
+        public void SetWaarborg(double value)
+        {
+            Waarborg.Waarde = value;
+        }
+
+        public Prijs PersoonstoeslagPerNacht { get; private set; } = new Prijs(0, PrijsEenheid.PerPersoonPerNacht);
+        public void SetPersoonstoeslagPerNacht(double value)
+        {
+            PersoonstoeslagPerNacht.Waarde = value;
+        }
+        
+
         public int MaxAantalPersonen
         {
             get
@@ -35,25 +62,6 @@ namespace SndrLth.RentAVilla.Domain
                 _maxAantalPersonen = value;
             }
         }
-
-        public double Waarborg
-        {
-            get
-            {
-                return _waarborg;
-            }
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentOutOfRangeException($"{nameof(_waarborg)}: " +
-                        $"{value} is smaller than zero (negative price exception)");
-
-                }
-                _waarborg = value;
-            }
-        }
-
         public int MinVerblijfsduur
         {
             get
@@ -72,45 +80,6 @@ namespace SndrLth.RentAVilla.Domain
             }
         }
 
-        public double ToeslagPersoonsOvernachting
-        {
-            get
-            {
-                return _toeslagPersoonsOvernachting;
-            }
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentOutOfRangeException($"{nameof(_toeslagPersoonsOvernachting)}: " +
-                        $"{value} is smaller than zero (negative price exception)");
-
-                }
-                _toeslagPersoonsOvernachting = value;
-            }
-        }
-
-        public double Schoonmaak
-        {
-            get
-            {
-                return _schoonmaak;
-            }
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentOutOfRangeException($"{nameof(_schoonmaak)}: " +
-                        $"{value} is smaller than zero (negative price exception)");
-
-                }
-                _schoonmaak = value;
-            }
-        }
-        //------------------------------------
-        // TODO: PRICES SHOULD BE DECORATORS!!!!!!!!
-        //------------------------------------
-        public Dictionary<Tarief, double> TariefGebondenPrijsPerNacht { get; set; }
-        public Dictionary<DateTime, Tarief> TariefStartData { get; set; }
+        public Dictionary<DateTime, TariefType> TariefKalender { get; set; } = new Dictionary<DateTime, TariefType>();
     }
 }

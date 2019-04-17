@@ -53,8 +53,10 @@
     <Compile Include="Enums\ActieveLanden.cs" />
     <Compile Include="Pand.cs" />
     <Compile Include="Periode.cs" />
+    <Compile Include="Enums\PrijsEenheid.cs" />
+    <Compile Include="Prijs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Enums\Tarief.cs" />
+    <Compile Include="Enums\TariefType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
