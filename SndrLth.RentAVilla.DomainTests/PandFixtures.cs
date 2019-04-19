@@ -9,8 +9,6 @@ namespace SndrLth.RentAVilla.DomainTests
     [TestClass]
     public class PandFixtures
     {
-
-
         public Pand Pand { get; set; } = new Pand();
 
         [TestMethod]
@@ -19,7 +17,7 @@ namespace SndrLth.RentAVilla.DomainTests
             Pand = new Pand();
             Assert.IsInstanceOfType(Pand, typeof(Pand));
         }
-
+        
         [TestMethod]
         public void LandSetsToActieveLandenAndReturnsLand()
         {
@@ -68,7 +66,6 @@ namespace SndrLth.RentAVilla.DomainTests
         public void ZeroMaxAantalPersonenThrowsArgOutOfRangeException()
         {
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => Pand.MaxAantalPersonen = 0);
-
         }
 
         [TestMethod]
@@ -99,9 +96,9 @@ namespace SndrLth.RentAVilla.DomainTests
         public void PersoonstoeslagPerNachtPrijsTest()
         {
             //eventuele toeslag per overnachting per persoon
-            Pand.SetPersoonstoeslagPerNacht(15.00);
-            Assert.IsTrue(Math.Abs(Pand.PersoonstoeslagPerNacht.Waarde - 15.00) < 0.001);
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => Pand.SetPersoonstoeslagPerNacht(-15.00));
+            Pand.SetDagPrijs(15.00);
+            Assert.IsTrue(Math.Abs(Pand.DagPrijs.Waarde - 15.00) < 0.001);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => Pand.SetDagPrijs(-15.00));
         }
 
         [TestMethod]

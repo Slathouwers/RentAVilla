@@ -13,17 +13,23 @@ namespace SndrLth.RentAVilla.Domain
 
         public Pand()
         {
-            TarievenPrijsLijst = new TarievenLijst();
+            _maxAantalPersonen = 0;
+            _minVerblijfsduur = 0;
+            TarievenLijst = new TarievenLijst();
+            SchoonmaakPrijs = new SchoonmaakPrijs(0);
+            TariefKalender = new TariefKalender();
+            Waarborg = new Waarborg(0);
+            DagPrijs = (DagPrijs)0.00;
         }
 
-        public TarievenLijst TarievenPrijsLijst { get; }
+        public TarievenLijst TarievenLijst { get; }
         public TariefKalender TariefKalender { get; set; }
         public ActieveLanden Land { get; set; }
         public string Regio { get; set; }
         public string Plaats { get; set; }
-        public Prijs SchoonmaakPrijs { get; } = new Prijs(0, PrijsEenheid.PerReservatie);
-        public Prijs Waarborg { get; } = new Prijs(0, PrijsEenheid.PerReservatie);
-        public Prijs PersoonstoeslagPerNacht { get; } = new Prijs(0, PrijsEenheid.PerPersoonPerNacht);
+        public SchoonmaakPrijs SchoonmaakPrijs { get; }
+        public Waarborg Waarborg { get; }
+        public DagPrijs DagPrijs { get; }
         public int MaxAantalPersonen
         {
             get => _maxAantalPersonen;
@@ -58,9 +64,9 @@ namespace SndrLth.RentAVilla.Domain
             Waarborg.Waarde = value;
         }
 
-        public void SetPersoonstoeslagPerNacht(double value)
+        public void SetDagPrijs(double value)
         {
-            PersoonstoeslagPerNacht.Waarde = value;
+            DagPrijs.Waarde = value;
         }
     }
 

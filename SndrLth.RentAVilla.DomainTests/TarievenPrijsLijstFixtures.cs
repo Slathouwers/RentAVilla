@@ -15,7 +15,7 @@ namespace SndrLth.RentAVilla.DomainTests
         {
             TarievenLijst tarievenPrijsLijst = new TarievenLijst();
             //prijs voor 1 overnachting afhankelijk van de periode waarin gehuurd wordt
-            Prijs laagseizoenPerNacht = new Prijs(50.00, PrijsEenheid.PerNacht);
+            double laagseizoenPerNacht = 50.00;
             
             tarievenPrijsLijst[Tarief.Laagseizoen] = (DagPrijs)laagseizoenPerNacht;
             Assert.IsTrue(Math.Abs(tarievenPrijsLijst[Tarief.Laagseizoen].Waarde - 50.00) < 0.001);

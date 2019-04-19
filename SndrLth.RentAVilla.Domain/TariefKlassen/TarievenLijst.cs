@@ -28,7 +28,7 @@ namespace SndrLth.RentAVilla.Domain.TariefKlassen
             set
             {
                 RemoveAll(el => el.TariefType == t);
-                Add(new DagPrijs(t, value));
+                Add(new DagPrijs(t, value.Waarde));
             }
             
         } 
