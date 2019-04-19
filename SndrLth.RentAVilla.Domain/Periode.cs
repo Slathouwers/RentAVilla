@@ -8,22 +8,15 @@ namespace SndrLth.RentAVilla.Domain
         {
             if (eind.Date.CompareTo(start.Date) <= 0)
                 throw new ArgumentException("Ongeldige Periode: eind is kleiner of gelijk aan start!");
-            this.Start = start;
-            this.Eind = eind;
+            Start = start;
+            Eind = eind;
         }
-
         public DateTime Eind { get; set; }
         public DateTime Start { get; set; }
-        public int AantalNachten
-        {
-            get
-            {
-                return Eind.Date.Subtract(Start.Date).Days;
-            }
-        }
+        public int AantalNachten => Eind.Date.Subtract(Start.Date).Days;
         public bool Overlapt(Periode p)
         {
-            return this.Start.Date < p.Eind.Date && this.Eind > p.Start.Date;
+            return Start.Date < p.Eind.Date && Eind > p.Start.Date;
         }
     }
 }

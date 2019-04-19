@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SndrLth.RentAVilla.Domain
+namespace SndrLth.RentAVilla.Domain.Enums
 {
     [Flags]
     public enum PrijsEenheid : byte
