@@ -50,9 +50,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\ActieveLanden.cs" />
     <Compile Include="Pand.cs" />
     <Compile Include="Periode.cs" />
+    <Compile Include="Enums\PrijsEenheid.cs" />
+    <Compile Include="Prijs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Enums\TariefType.cs" />
+    <Compile Include="TariefKlassen\TariefKalender.cs" />
+    <Compile Include="TariefKlassen\TariefKalenderRegistratie.cs" />
+    <Compile Include="TariefKlassen\TariefPrijs.cs" />
+    <Compile Include="TariefKlassen\TarievenPrijsLijst.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,38 +1,67 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SndrLth.RentAVilla.Domain.Enums;
+using SndrLth.RentAVilla.Domain.TariefKlassen;
 
 namespace SndrLth.RentAVilla.Domain
 {
+
     public class Pand
     {
+
+        private int _maxAantalPersonen;
+        private int _minVerblijfsduur;
+
+        public Pand()
+        {
+            TarievenPrijsLijst = new TarievenPrijsLijst();
+        }
+
+        public TarievenPrijsLijst TarievenPrijsLijst { get; }
+        public TariefKalender TariefKalender { get; set; }
         public ActieveLanden Land { get; set; }
         public string Regio { get; set; }
         public string Plaats { get; set; }
-        public int MaxAantalPersonen { get; set; }
-    }
-}
+        public Prijs SchoonmaakPrijs { get; } = new Prijs(0, PrijsEenheid.PerReservatie);
+        public Prijs Waarborg { get; } = new Prijs(0, PrijsEenheid.PerReservatie);
+        public Prijs PersoonstoeslagPerNacht { get; } = new Prijs(0, PrijsEenheid.PerPersoonPerNacht);
+        public int MaxAantalPersonen
+        {
+            get => _maxAantalPersonen;
+            set
+            {
+                if (value <= 0)
+                    throw new ArgumentOutOfRangeException($"{nameof(MaxAantalPersonen)}: " +
+                                                          $"{value} is smaller than or equal to zero (villa without rooms!)");
+                _maxAantalPersonen = value;
+            }
+        }
 
-namespace SndrLth.RentAVilla.Domain
-{
-    public enum ActieveLanden
-    {
-        Frankrijk,
-        Italie,
-        Portugal,
-        Spanje
-    }
-}
+        public int MinVerblijfsduur
+        {
+            get => _minVerblijfsduur;
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException($"{nameof(_minVerblijfsduur)}:" +
+                                                          $" {value} is smaller than zero (negative periode exception)");
+                _minVerblijfsduur = value;
+            }
+        }
 
-namespace SndrLth.RentAVilla.Domain
-{
-    public enum TariefPeriodes
-    {
-        Onbeschikbaar,
-        Hoogseizoen,
-        Tussenseizoen,
-        Laagseizoen
+        public void SetSchoonmaakPrijs(double value)
+        {
+            SchoonmaakPrijs.Waarde = value;
+        }
+
+        public void SetWaarborg(double value)
+        {
+            Waarborg.Waarde = value;
+        }
+
+        public void SetPersoonstoeslagPerNacht(double value)
+        {
+            PersoonstoeslagPerNacht.Waarde = value;
+        }
     }
+
 }
