@@ -19,8 +19,9 @@ namespace SndrLth.RentAVilla.Domain
             SchoonmaakPrijs = new SchoonmaakPrijs(0);
             TariefKalender = new TariefKalender();
             Waarborg = new Waarborg(0);
-            DagPrijs = (DagPrijs)0.00;
+            PersoonsToeslagPerNacht = (PersoonsToeslagPerNacht)0.00;
         }
+
 
         public TarievenLijst TarievenLijst { get; }
         public TariefKalender TariefKalender { get; set; }
@@ -29,7 +30,7 @@ namespace SndrLth.RentAVilla.Domain
         public string Plaats { get; set; }
         public SchoonmaakPrijs SchoonmaakPrijs { get; }
         public Waarborg Waarborg { get; }
-        public DagPrijs DagPrijs { get; }
+        public PersoonsToeslagPerNacht PersoonsToeslagPerNacht { get; }
         public int MaxAantalPersonen
         {
             get => _maxAantalPersonen;
@@ -66,7 +67,7 @@ namespace SndrLth.RentAVilla.Domain
 
         public void SetDagPrijs(double value)
         {
-            DagPrijs.Waarde = value;
+            PersoonsToeslagPerNacht.Waarde = value;
         }
     }
 

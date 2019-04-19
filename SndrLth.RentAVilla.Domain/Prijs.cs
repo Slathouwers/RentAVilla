@@ -65,9 +65,9 @@ namespace SndrLth.RentAVilla.Domain
         }
 
     }
-    public class DagPrijs : PrijsComponent
+    public class HuurPrijsPerNacht : PrijsComponent
     {
-        public DagPrijs(Tarief tarief, double waarde)
+        public HuurPrijsPerNacht(Tarief tarief, double waarde)
         {
             Waarde = waarde;
             TariefType = tarief;
@@ -75,9 +75,9 @@ namespace SndrLth.RentAVilla.Domain
         public Tarief TariefType { get; set; }
         public override PrijsEenheid ToepassingsEenheid { get; set; } = PrijsEenheid.PerNacht;
 
-        public static explicit operator DagPrijs(double v)
+        public static explicit operator HuurPrijsPerNacht(double v)
         {
-            return new DagPrijs(Tarief.Ongekend, v);
+            return new HuurPrijsPerNacht(Tarief.Ongekend, v);
         }
     }
 

@@ -97,7 +97,7 @@ namespace SndrLth.RentAVilla.DomainTests
         {
             //eventuele toeslag per overnachting per persoon
             Pand.SetDagPrijs(15.00);
-            Assert.IsTrue(Math.Abs(Pand.DagPrijs.Waarde - 15.00) < 0.001);
+            Assert.IsTrue(Math.Abs(Pand.PersoonsToeslagPerNacht.Waarde - 15.00) < 0.001);
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => Pand.SetDagPrijs(-15.00));
         }
 
