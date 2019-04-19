@@ -4,7 +4,6 @@ using SndrLth.RentAVilla.Domain.TariefKlassen;
 
 namespace SndrLth.RentAVilla.Domain
 {
-    //TODO: Refactor to new concrete Prijs components and and concrete Prijs Decorato
     public class Pand
     {
 
