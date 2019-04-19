@@ -13,12 +13,12 @@ namespace SndrLth.RentAVilla.DomainTests
         [TestMethod]
         public void TarievenPrijsLijstAangemaaktEnGewijzigd()
         {
-            TarievenPrijsLijst tarievenPrijsLijst = new TarievenPrijsLijst();
+            TarievenLijst tarievenPrijsLijst = new TarievenLijst();
             //prijs voor 1 overnachting afhankelijk van de periode waarin gehuurd wordt
-            var laagseizoenPerNacht = new Prijs(50.00, PrijsEenheid.PerNacht);
+            Prijs laagseizoenPerNacht = new Prijs(50.00, PrijsEenheid.PerNacht);
             
-            tarievenPrijsLijst[TariefType.Laagseizoen] = laagseizoenPerNacht;
-            Assert.IsTrue(Math.Abs(tarievenPrijsLijst[TariefType.Laagseizoen].Waarde - 50.00) < 0.001);
+            tarievenPrijsLijst[Tarief.Laagseizoen] = (DagPrijs)laagseizoenPerNacht;
+            Assert.IsTrue(Math.Abs(tarievenPrijsLijst[Tarief.Laagseizoen].Waarde - 50.00) < 0.001);
         }
     }
 }

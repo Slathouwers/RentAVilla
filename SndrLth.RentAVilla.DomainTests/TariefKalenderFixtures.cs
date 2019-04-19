@@ -12,9 +12,9 @@ namespace SndrLth.RentAVilla.DomainTests
         {
             return new TariefKalender
             {
-                new TariefKalenderRegistratie(DateTime.Parse("16/04/2019"), TariefType.Onbeschikbaar),
-                new TariefKalenderRegistratie(DateTime.Parse("16/05/2019"), TariefType.Laagseizoen),
-                new TariefKalenderRegistratie(DateTime.Parse("16/06/2019"), TariefType.Hoogseizoen)
+                new TariefKalenderRegistratie(DateTime.Parse("16/04/2019"), Tarief.Onbeschikbaar),
+                new TariefKalenderRegistratie(DateTime.Parse("16/05/2019"), Tarief.Laagseizoen),
+                new TariefKalenderRegistratie(DateTime.Parse("16/06/2019"), Tarief.Hoogseizoen)
             };
         }
         [TestMethod]
@@ -30,8 +30,8 @@ namespace SndrLth.RentAVilla.DomainTests
             //Test date lookup in tariefkalender
             var testdate = DateTime.Parse("15/06/2019"); //Laagseizoen
             var testdate2 = DateTime.Parse("15/05/2019"); // Onbeschikbaar
-            Assert.IsTrue(tk.GetTariefTypeVoorDatum(testdate) == TariefType.Laagseizoen);
-            Assert.IsTrue(tk.GetTariefTypeVoorDatum(testdate2) == TariefType.Onbeschikbaar);
+            Assert.IsTrue(tk.GetTariefTypeVoorDatum(testdate) == Tarief.Laagseizoen);
+            Assert.IsTrue(tk.GetTariefTypeVoorDatum(testdate2) == Tarief.Onbeschikbaar);
         }
     }
 

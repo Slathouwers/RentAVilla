@@ -4,31 +4,31 @@ using SndrLth.RentAVilla.Domain.Enums;
 
 namespace SndrLth.RentAVilla.Domain.TariefKlassen
 {
-    public class TarievenPrijsLijst : List<TariefPrijs>
+    public class TarievenLijst : List<DagPrijs>
     {
-        public TarievenPrijsLijst() 
+        public TarievenLijst() 
         {
-            foreach (TariefType tar in Enum.GetValues(typeof(TariefType)))
+            foreach (Tarief tar in Enum.GetValues(typeof(Tarief)))
             {
-                Add(new TariefPrijs(tar, new Prijs(0.00, PrijsEenheid.PerNacht)));
+                Add(new DagPrijs(tar, 0.00));
             }
                 
         }
 
-        public new void Add(TariefPrijs item)
+        public new void Add(DagPrijs item)
         {
             if (Exists(el => el.TariefType == item.TariefType))
                 throw new ArgumentException($"Tarief '{item.TariefType.ToString()}' heeft al een prijs!");
             base.Add(item);
         }
 
-        public Prijs this[TariefType t]
+        public DagPrijs this[Tarief t]
         {
-            get => Find(el => el.TariefType == t).Prijs;
+            get => Find(el => el.TariefType == t);
             set
             {
                 RemoveAll(el => el.TariefType == t);
-                Add(new TariefPrijs(t, value));
+                Add(new DagPrijs(t, value));
             }
             
         } 

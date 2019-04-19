@@ -4,7 +4,7 @@ using SndrLth.RentAVilla.Domain.TariefKlassen;
 
 namespace SndrLth.RentAVilla.Domain
 {
-
+    //TODO: Refactor to new concrete Prijs components and and concrete Prijs Decorato
     public class Pand
     {
 
@@ -13,10 +13,10 @@ namespace SndrLth.RentAVilla.Domain
 
         public Pand()
         {
-            TarievenPrijsLijst = new TarievenPrijsLijst();
+            TarievenPrijsLijst = new TarievenLijst();
         }
 
-        public TarievenPrijsLijst TarievenPrijsLijst { get; }
+        public TarievenLijst TarievenPrijsLijst { get; }
         public TariefKalender TariefKalender { get; set; }
         public ActieveLanden Land { get; set; }
         public string Regio { get; set; }

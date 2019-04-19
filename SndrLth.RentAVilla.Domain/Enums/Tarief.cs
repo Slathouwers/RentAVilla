@@ -1,7 +1,8 @@
 ﻿namespace SndrLth.RentAVilla.Domain.Enums
 {
-    public enum TariefType
+    public enum Tarief
     {
+        Ongekend,
         Onbeschikbaar,
         Hoogseizoen,
         Tussenseizoen,

@@ -7,7 +7,7 @@ namespace SndrLth.RentAVilla.Domain.TariefKlassen
 {
     public class TariefKalender : List<TariefKalenderRegistratie>
     {
-        public TariefType GetTariefTypeVoorDatum(DateTime datum)
+        public Tarief GetTariefTypeVoorDatum(DateTime datum)
         {
             var minimum = TimeSpan.MaxValue;
             var tariefKey = DateTime.MinValue;
