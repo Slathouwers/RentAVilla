@@ -50,5 +50,32 @@ namespace SndrLth.RentAVilla.Domain.TariefKlassen
             Add(new TariefKalenderRegistratie(periode.Start, tarief));
             Add(new TariefKalenderRegistratie(periode.Eind, LaatsteType));
         }
+
+        public void InsertWhereBeschikbaar(Periode periode, Tarief tarief)
+        {
+            Tarief LaatsteType;
+            IEnumerable<TariefKalenderRegistratie> overlaps = this.Where(registratie => periode.Overlapt(registratie.StartDatum));
+            if (overlaps.Count() != 0)
+            {
+                LaatsteType = this.Single(registratie => registratie.StartDatum == overlaps.Max(overlapReg => overlapReg.StartDatum)).TariefType;
+                ForEach(registratie =>
+                {
+                    registratie.TariefType = (registratie.TariefType != Tarief.Onbeschikbaar) ? tarief : Tarief.Onbeschikbaar;
+                });
+
+            }
+            else
+            {
+                IEnumerable<TariefKalenderRegistratie> RegistratiesVoorEind = this.Where(registratie => registratie.StartDatum < periode.Eind);
+                LaatsteType = this.Single(registratie => registratie.StartDatum == RegistratiesVoorEind.Max(Reg => Reg.StartDatum)).TariefType;
+            }
+
+            //Add period.Start and tarief as new registration
+            if(!this.Exists(registratie => registratie.StartDatum == periode.Start))
+            {
+                Add(new TariefKalenderRegistratie(periode.Start, tarief));
+            }
+            Add(new TariefKalenderRegistratie(periode.Eind, LaatsteType));
+        }
     }
 }

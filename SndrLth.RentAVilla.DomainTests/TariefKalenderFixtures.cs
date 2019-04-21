@@ -48,6 +48,24 @@ namespace SndrLth.RentAVilla.DomainTests
             }
             Assert.IsTrue(tk.GetTariefTypeVoorDatum(periode.Eind) == Tarief.Hoogseizoen);
         }
+        [TestMethod]
+        public void TariefKalenderUpdateIndienBeschikbaar()
+        {
+            var tk = PandTariefKalenderVoorbeeld();
+            //Overschrijf alle kalenderregistraties met nieuwe periode
+            var periode = new Periode("15/04/2019", "17/07/2019");
+            tk.InsertWhereBeschikbaar(periode, Tarief.Laagseizoen);
+
+            foreach (DateTime d in periode.GetNachten())
+            {
+                if(d < DateTime.Parse("16/05/2019") && d>= DateTime.Parse("16/04/2019"))
+                {
+                    Assert.IsTrue(tk.GetTariefTypeVoorDatum(d) == Tarief.Onbeschikbaar);
+                }
+               else Assert.IsTrue(tk.GetTariefTypeVoorDatum(d) == Tarief.Laagseizoen);
+            }
+            Assert.IsTrue(tk.GetTariefTypeVoorDatum(periode.Eind) == Tarief.Hoogseizoen);
+        }
     }
 
 }

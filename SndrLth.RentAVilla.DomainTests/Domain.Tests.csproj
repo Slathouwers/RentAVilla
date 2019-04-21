@@ -56,11 +56,16 @@
     <Compile Include="TariefKalenderFixtures.cs" />
     <Compile Include="TarievenPrijsLijstFixtures.cs" />
     <Compile Include="KlantFixtures.cs" />
+    <Compile Include="TODO\StaffelkortingCollectie.cs" />
     <Compile Include="TODO\StaffelkortingFixtures.cs" />
     <Compile Include="TODO\AfroepContractFixtures.cs" />
     <Compile Include="TODO\PromotieFixtures.cs" />
     <Compile Include="PrijsFixtures.cs" />
-    <Compile Include="TODO\ReservatieFixtures.cs" />
+    <Compile Include="ReservatieFixtures.cs" />
+    <Compile Include="TODO\HuurPandCollectieFixtures.cs" />
+    <Compile Include="TODO\ReservatieCollectieFixtures.cs" />
+    <Compile Include="TODO\AfroepContractCollectieFixtures.cs" />
+    <Compile Include="TODO\RentAVillaFixtures.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SndrLth.RentAVilla.Domain\Domain.csproj">
