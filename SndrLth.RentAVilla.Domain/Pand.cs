@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SndrLth.RentAVilla.Domain.Enums;
 using SndrLth.RentAVilla.Domain.TariefKlassen;
 
@@ -9,6 +10,14 @@ namespace SndrLth.RentAVilla.Domain
 
         private int _maxAantalPersonen;
         private int _minVerblijfsduur;
+
+        public IEnumerable<DateTime> GetOnbeschikbareNachten(Periode reservatiePeriode)
+        {
+            foreach (DateTime d in reservatiePeriode.GetNachten())
+            {
+                if(TariefKalender.GetTariefTypeVoorDatum(d)==Tarief.Onbeschikbaar) yield return d;
+            }
+        }
 
         public Pand()
         {

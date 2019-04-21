@@ -68,6 +68,21 @@ namespace SndrLth.RentAVilla.DomainTests
             var periode = new Periode(start, eind);
             Assert.IsTrue(periode.Start.Equals(start) && periode.Eind.Equals(eind));
         }
+        [TestMethod]
+        public void PeriodeConstructorParsesDateStringArgument()
+        {
+            string startString = "21/04/2019";
+            string eindString = "25/04/2019";
+            var periode = new Periode(startString, eindString);
+            Assert.IsTrue(periode.Start.Equals(DateTime.Parse(startString)) && periode.Eind.Equals(DateTime.Parse(eindString)));
+        }
+        [TestMethod]
+        public void PeriodeConstructorThrowsExceptionOnInvalidStringArguments()
+        {
+            string startString = "abc9";
+            string eindString = ".....";
+            Assert.ThrowsException<ArgumentException>(()=> new Periode(startString, eindString));
+        }
 
         [DataTestMethod]
         [DynamicData(nameof(GetInvalidPeriodeDefinitions))]
@@ -81,6 +96,12 @@ namespace SndrLth.RentAVilla.DomainTests
         public void OverlapTest(Periode p1, Periode p2, bool caseResult, string caseDefinition)
         {
             Assert.IsTrue(p1.Overlapt(p2) == caseResult, $"Case '{caseDefinition}' failed.");
+        }
+        [TestMethod()]
+        public void OverlaptDatumTest()
+        {
+            var periode = new Periode(start, eind);
+            Assert.IsTrue(periode.Overlapt(start.AddDays(1)));
         }
     }
 }

@@ -6,6 +6,7 @@ using SndrLth.RentAVilla.Domain.TariefKlassen;
 
 namespace SndrLth.RentAVilla.DomainTests
 {
+    [TestClass]
     public class TariefKalenderFixtures
     {
         private static TariefKalender PandTariefKalenderVoorbeeld()
@@ -32,6 +33,20 @@ namespace SndrLth.RentAVilla.DomainTests
             var testdate2 = DateTime.Parse("15/05/2019"); // Onbeschikbaar
             Assert.IsTrue(tk.GetTariefTypeVoorDatum(testdate) == Tarief.Laagseizoen);
             Assert.IsTrue(tk.GetTariefTypeVoorDatum(testdate2) == Tarief.Onbeschikbaar);
+        }
+        [TestMethod]
+        public void TariefKalenderTarievenOverschreven()
+        {
+            var tk = PandTariefKalenderVoorbeeld();
+            //Overschrijf alle kalenderregistraties met nieuwe periode
+            var periode = new Periode("15/04/2019", "17/07/2019");
+            tk.InsertWithOverride(periode, Tarief.Laagseizoen);
+
+            foreach (DateTime d in periode.GetNachten())
+            {
+                Assert.IsTrue( tk.GetTariefTypeVoorDatum(d) == Tarief.Laagseizoen);
+            }
+            Assert.IsTrue(tk.GetTariefTypeVoorDatum(periode.Eind) == Tarief.Hoogseizoen);
         }
     }
 

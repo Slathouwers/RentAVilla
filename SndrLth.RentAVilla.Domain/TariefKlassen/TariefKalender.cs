@@ -7,6 +7,7 @@ namespace SndrLth.RentAVilla.Domain.TariefKlassen
 {
     public class TariefKalender : List<TariefKalenderRegistratie>
     {
+
         public Tarief GetTariefTypeVoorDatum(DateTime datum)
         {
             var minimum = TimeSpan.MaxValue;
@@ -21,8 +22,32 @@ namespace SndrLth.RentAVilla.Domain.TariefKlassen
                     tariefKey = tariefDatum;
                 }
             }
+            TariefKalenderRegistratie t = (this.Count!=0)? this.Single(el => el.StartDatum == tariefKey) : new TariefKalenderRegistratie(datum, Tarief.Ongekend); 
+            return t.TariefType;
+        }
 
-            return this.Single(el => el.StartDatum == tariefKey).TariefType;
+        public void InsertWithOverride(Periode periode, Tarief tarief)
+        {
+            Tarief LaatsteType;
+            //Delete all overlapping KalenderRegistraties except last registration in periode => set startdate equal to periode.eindeq
+            IEnumerable<TariefKalenderRegistratie> overlaps = this.Where(registratie => periode.Overlapt(registratie.StartDatum));
+            if(overlaps.Count() !=0)
+            {
+                LaatsteType = this.Single(registratie => registratie.StartDatum == overlaps.Max(overlapReg => overlapReg.StartDatum)).TariefType;
+                foreach(TariefKalenderRegistratie overlapregistratie in overlaps){
+                    Remove(overlapregistratie);
+                }
+               
+            } 
+            else
+            {
+                IEnumerable<TariefKalenderRegistratie> RegistratiesVoorStart = this.Where(registratie => registratie.StartDatum < periode.Start);
+                LaatsteType = this.Single(registratie => registratie.StartDatum == RegistratiesVoorStart.Max(Reg => Reg.StartDatum)).TariefType;
+            }
+
+            //Add period.Start and tarief as new registration
+            Add(new TariefKalenderRegistratie(periode.Start, tarief));
+            Add(new TariefKalenderRegistratie(periode.Eind, LaatsteType));
         }
     }
 }

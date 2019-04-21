@@ -9,6 +9,7 @@ namespace SndrLth.RentAVilla.DomainTests
         [TestMethod]
         public void TestMethod1()
         {
+
         }
     }
 }
