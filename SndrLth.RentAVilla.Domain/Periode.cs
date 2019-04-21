@@ -55,7 +55,7 @@ namespace SndrLth.RentAVilla.Domain
         /// <returns></returns>
         public IEnumerable<DateTime> GetNachten()
         {
-            for (DateTime d = Start; d <= Eind; d = d.AddDays(1))
+            for (DateTime d = Start; d < Eind; d = d.AddDays(1))
             {
                 yield return d;
             }

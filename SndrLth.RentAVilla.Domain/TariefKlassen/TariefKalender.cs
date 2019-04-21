@@ -1,7 +1,7 @@
-﻿using System;
+﻿using SndrLth.RentAVilla.Domain.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using SndrLth.RentAVilla.Domain.Enums;
 
 namespace SndrLth.RentAVilla.Domain.TariefKlassen
 {
@@ -10,11 +10,14 @@ namespace SndrLth.RentAVilla.Domain.TariefKlassen
 
         public Tarief GetTariefTypeVoorDatum(DateTime datum)
         {
-            var minimum = TimeSpan.MaxValue;
-            var tariefKey = DateTime.MinValue;
-            foreach (var tariefDatum in this.Select(el => el.StartDatum))
+            TimeSpan minimum = TimeSpan.MaxValue;
+            DateTime tariefKey = DateTime.MinValue;
+            foreach (DateTime tariefDatum in this.Select(el => el.StartDatum))
             {
-                if (tariefDatum > datum) continue;
+                if (tariefDatum > datum)
+                {
+                    continue;
+                }
 
                 if (datum.Subtract(tariefDatum) <= minimum)
                 {
@@ -22,7 +25,7 @@ namespace SndrLth.RentAVilla.Domain.TariefKlassen
                     tariefKey = tariefDatum;
                 }
             }
-            TariefKalenderRegistratie t = (this.Count!=0)? this.Single(el => el.StartDatum == tariefKey) : new TariefKalenderRegistratie(datum, Tarief.Ongekend); 
+            TariefKalenderRegistratie t = (Count != 0) ? this.Single(el => el.StartDatum == tariefKey) : new TariefKalenderRegistratie(datum, Tarief.Ongekend);
             return t.TariefType;
         }
 
@@ -31,14 +34,12 @@ namespace SndrLth.RentAVilla.Domain.TariefKlassen
             Tarief LaatsteType;
             //Delete all overlapping KalenderRegistraties except last registration in periode => set startdate equal to periode.eindeq
             IEnumerable<TariefKalenderRegistratie> overlaps = this.Where(registratie => periode.Overlapt(registratie.StartDatum));
-            if(overlaps.Count() !=0)
+            if (overlaps.Count() != 0)
             {
                 LaatsteType = this.Single(registratie => registratie.StartDatum == overlaps.Max(overlapReg => overlapReg.StartDatum)).TariefType;
-                foreach(TariefKalenderRegistratie overlapregistratie in overlaps){
-                    Remove(overlapregistratie);
-                }
-               
-            } 
+                RemoveAll(registratie => periode.Overlapt(registratie.StartDatum));
+
+            }
             else
             {
                 IEnumerable<TariefKalenderRegistratie> RegistratiesVoorStart = this.Where(registratie => registratie.StartDatum < periode.Start);
