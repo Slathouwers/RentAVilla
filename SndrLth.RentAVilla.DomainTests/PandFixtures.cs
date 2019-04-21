@@ -17,7 +17,7 @@ namespace SndrLth.RentAVilla.DomainTests
             Pand = new Pand();
             Assert.IsInstanceOfType(Pand, typeof(Pand));
         }
-        
+
         [TestMethod]
         public void LandSetsToActieveLandenAndReturnsLand()
         {
@@ -62,7 +62,7 @@ namespace SndrLth.RentAVilla.DomainTests
         {
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => Pand.MaxAantalPersonen = -1);
         }
-
+        [TestMethod]
         public void ZeroMaxAantalPersonenThrowsArgOutOfRangeException()
         {
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => Pand.MaxAantalPersonen = 0);

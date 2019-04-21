@@ -9,7 +9,7 @@ namespace SndrLth.RentAVilla.Domain
         PrijsEenheid ToepassingsEenheid { get; set; }
         double Waarde { get; set; }
     }
-    // Abstract decorator class
+    // Abstract PrijsComponent decorator class
     public abstract class PrijsComponent : IPrijs
     {
         private double _waarde;
@@ -24,7 +24,7 @@ namespace SndrLth.RentAVilla.Domain
             }
         }
     }
-    //Concrete PrijsComponentDecorators
+    //Concrete PrijsComponenten
     public class Waarborg : PrijsComponent
     {
         public Waarborg(double waarde)

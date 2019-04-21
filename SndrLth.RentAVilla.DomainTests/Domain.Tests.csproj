@@ -55,11 +55,11 @@
     <Compile Include="PandFixtures.cs" />
     <Compile Include="TariefKalenderFixtures.cs" />
     <Compile Include="TarievenPrijsLijstFixtures.cs" />
-    <Compile Include="TODO\KlantFixtures.cs" />
+    <Compile Include="KlantFixtures.cs" />
     <Compile Include="TODO\StaffelkortingFixtures.cs" />
     <Compile Include="TODO\AfroepContractFixtures.cs" />
     <Compile Include="TODO\PromotieFixtures.cs" />
-    <Compile Include="TODO\PrijsFixtures.cs" />
+    <Compile Include="PrijsFixtures.cs" />
     <Compile Include="TODO\ReservatieFixtures.cs" />
   </ItemGroup>
   <ItemGroup>

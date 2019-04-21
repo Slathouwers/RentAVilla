@@ -51,6 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\ActieveLanden.cs" />
+    <Compile Include="Enums\KlantCategorie.cs" />
+    <Compile Include="Klant.cs" />
     <Compile Include="Pand.cs" />
     <Compile Include="Periode.cs" />
     <Compile Include="Enums\PrijsEenheid.cs" />

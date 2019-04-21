@@ -21,7 +21,6 @@ namespace SndrLth.RentAVilla.Domain
             PersoonsToeslagPerNacht = (PersoonsToeslagPerNacht)0.00;
         }
 
-
         public TarievenLijst TarievenLijst { get; }
         public TariefKalender TariefKalender { get; set; }
         public ActieveLanden Land { get; set; }
