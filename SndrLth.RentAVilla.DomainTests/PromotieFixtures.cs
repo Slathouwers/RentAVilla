@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SndrLth.RentAVilla.Domain;
 using SndrLth.RentAVilla.Domain.Enums;
+using SndrLth.RentAVilla.Domain.PrijsKlassen;
 
 namespace SndrLth.RentAVilla.DomainTests
 {

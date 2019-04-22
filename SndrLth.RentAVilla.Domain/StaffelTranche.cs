@@ -1,4 +1,6 @@
-﻿namespace SndrLth.RentAVilla.Domain
+﻿using SndrLth.RentAVilla.Domain.PrijsKlassen;
+
+namespace SndrLth.RentAVilla.Domain
 {
     public class StaffelTranche
     {
