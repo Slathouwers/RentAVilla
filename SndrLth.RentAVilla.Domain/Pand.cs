@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using SndrLth.RentAVilla.Domain.Enums;
+using SndrLth.RentAVilla.Domain.PrijsKlassen;
 using SndrLth.RentAVilla.Domain.TariefKlassen;
 
 namespace SndrLth.RentAVilla.Domain

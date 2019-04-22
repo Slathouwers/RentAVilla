@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using SndrLth.RentAVilla.Domain.Enums;
+using SndrLth.RentAVilla.Domain.PrijsKlassen;
 
 namespace SndrLth.RentAVilla.Domain.TariefKlassen
 {
