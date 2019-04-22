@@ -56,13 +56,14 @@
     <Compile Include="TariefKalenderFixtures.cs" />
     <Compile Include="TarievenPrijsLijstFixtures.cs" />
     <Compile Include="KlantFixtures.cs" />
+    <Compile Include="TestDataGenerator.cs" />
     <Compile Include="TODO\StaffelkortingCollectie.cs" />
     <Compile Include="StaffelkortingFixtures.cs" />
     <Compile Include="AfroepContractFixtures.cs" />
     <Compile Include="PromotieFixtures.cs" />
     <Compile Include="PrijsFixtures.cs" />
     <Compile Include="ReservatieFixtures.cs" />
-    <Compile Include="TODO\HuurPandCollectieFixtures.cs" />
+    <Compile Include="HuurPandCatalogusFixtures.cs" />
     <Compile Include="TODO\ReservatieCollectieFixtures.cs" />
     <Compile Include="TODO\AfroepContractCollectieFixtures.cs" />
     <Compile Include="TODO\RentAVillaFixtures.cs" />

@@ -33,8 +33,7 @@ namespace SndrLth.RentAVilla.Domain.TariefKlassen
             get => Find(el => el.TariefType == t);
             set
             {
-                RemoveAll(el => el.TariefType == t);
-                Add(new HuurPrijsPerNacht(t, value.Waarde));
+                Find(el => el.TariefType == t).Waarde = value.Waarde;
             }
             
         } 

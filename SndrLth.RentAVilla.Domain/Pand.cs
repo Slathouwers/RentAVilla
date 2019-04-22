@@ -12,14 +12,48 @@ namespace SndrLth.RentAVilla.Domain
         private int _maxAantalPersonen;
         private int _minVerblijfsduur;
 
-        public IEnumerable<DateTime> GetOnbeschikbareNachten(Periode reservatiePeriode)
+        public Pand(TarievenLijst tarievenLijst,
+                    TariefKalender tariefKalender,
+                    ActieveLanden land,
+                    string regio,
+                    string plaats,
+                    SchoonmaakPrijs schoonmaakPrijs,
+                    Waarborg waarborg,
+                    PersoonsToeslagPerNacht persoonsToeslagPerNacht,
+                    int maxAantalPersonen,
+                    int minVerblijfsduur)
         {
-            foreach (DateTime d in reservatiePeriode.GetNachten())
-            {
-                if(TariefKalender.GetTariefTypeVoorDatum(d)==Tarief.Onbeschikbaar) yield return d;
-            }
+            TarievenLijst = tarievenLijst;
+            TariefKalender = tariefKalender;
+            Land = land;
+            Regio = regio;
+            Plaats = plaats;
+            SchoonmaakPrijs = schoonmaakPrijs;
+            Waarborg = waarborg;
+            PersoonsToeslagPerNacht = persoonsToeslagPerNacht;
+            MaxAantalPersonen = maxAantalPersonen;
+            MinVerblijfsduur = minVerblijfsduur;
         }
-
+        public Pand(ActieveLanden land,
+                    string regio,
+                    string plaats,
+                    SchoonmaakPrijs schoonmaakPrijs,
+                    Waarborg waarborg,
+                    PersoonsToeslagPerNacht persoonsToeslagPerNacht,
+                    int maxAantalPersonen,
+                    int minVerblijfsduur)
+        {
+            TarievenLijst = new TarievenLijst();
+            TariefKalender = new TariefKalender();
+            Land = land;
+            Regio = regio;
+            Plaats = plaats;
+            SchoonmaakPrijs = schoonmaakPrijs;
+            Waarborg = waarborg;
+            PersoonsToeslagPerNacht = persoonsToeslagPerNacht;
+            MaxAantalPersonen = maxAantalPersonen;
+            MinVerblijfsduur = minVerblijfsduur;
+        }
         public Pand()
         {
             _maxAantalPersonen = 0;
@@ -28,7 +62,7 @@ namespace SndrLth.RentAVilla.Domain
             SchoonmaakPrijs = new SchoonmaakPrijs(0);
             TariefKalender = new TariefKalender();
             Waarborg = new Waarborg(0);
-            PersoonsToeslagPerNacht = (PersoonsToeslagPerNacht)0.00;
+            PersoonsToeslagPerNacht = new PersoonsToeslagPerNacht(0.00);
         }
 
         public TarievenLijst TarievenLijst { get; }
@@ -36,9 +70,9 @@ namespace SndrLth.RentAVilla.Domain
         public ActieveLanden Land { get; set; }
         public string Regio { get; set; }
         public string Plaats { get; set; }
-        public SchoonmaakPrijs SchoonmaakPrijs { get; }
-        public Waarborg Waarborg { get; }
-        public PersoonsToeslagPerNacht PersoonsToeslagPerNacht { get; }
+        public SchoonmaakPrijs SchoonmaakPrijs { get; set; }
+        public Waarborg Waarborg { get; set; }
+        public PersoonsToeslagPerNacht PersoonsToeslagPerNacht { get; set; }
         public int MaxAantalPersonen
         {
             get => _maxAantalPersonen;
@@ -76,6 +110,13 @@ namespace SndrLth.RentAVilla.Domain
         public void SetDagPrijs(double value)
         {
             PersoonsToeslagPerNacht.Waarde = value;
+        }
+        public IEnumerable<DateTime> GetOnbeschikbareNachten(Periode reservatiePeriode)
+        {
+            foreach (DateTime d in reservatiePeriode.GetNachten())
+            {
+                if (TariefKalender.GetTariefTypeVoorDatum(d) == Tarief.Onbeschikbaar) yield return d;
+            }
         }
     }
 
