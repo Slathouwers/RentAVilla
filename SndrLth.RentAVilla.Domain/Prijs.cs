@@ -14,7 +14,7 @@ namespace SndrLth.RentAVilla.Domain
     {
         private double _waarde;
         public abstract PrijsEenheid ToepassingsEenheid { get; set; }
-        public double Waarde
+        public virtual double Waarde
         {
             get => _waarde;
             set
@@ -66,7 +66,11 @@ namespace SndrLth.RentAVilla.Domain
 
     }
     public class HuurPrijsPerNacht : PrijsComponent
-    {
+    {/// <summary>
+    /// Maakt een tariefgebonden huurprijs per nacht
+    /// </summary>
+    /// <param name="tarief"></param>
+    /// <param name="waarde"></param>
         public HuurPrijsPerNacht(Tarief tarief, double waarde)
         {
             Waarde = waarde;
@@ -81,26 +85,72 @@ namespace SndrLth.RentAVilla.Domain
         }
     }
 
+    public class VastePrijsPromotie : PrijsComponent
+    {/// <summary>
+    /// Maakt een promotie voor een vast bedrag te korten per prijsEenheid
+    /// </summary>
+    /// <param name="periode"></param>
+    /// <param name="toepassingsEenheid"></param>
+    /// <param name="waarde"></param>
+        public VastePrijsPromotie(Periode periode, PrijsEenheid toepassingsEenheid, double waarde)
+        {
+            Waarde = waarde;
+            Periode = periode;
+            ToepassingsEenheid = toepassingsEenheid;
+        }
+        public override PrijsEenheid ToepassingsEenheid { get; set; } = PrijsEenheid.PerReservatie;
+        public Periode Periode { get; set; }
+    }
+    public class PercentuelePromotie : PrijsComponent
+    {
+        private IPrijs _onderliggendePrijsComponent;
+        /// <summary>
+        /// Maakt een 'virtuele' promotie zonder onderliggende prijscomponent. Waarde is dus gelijk aan 0!!
+        /// </summary>
+        /// <param name="geldigheidsPeriode"></param>
+        /// <param name="toepassingsEenheid"></param>
+        /// <param name="percent"></param>
+        public PercentuelePromotie(Periode geldigheidsPeriode, PrijsEenheid toepassingsEenheid, double percent)
+        {
+            GeldigheidsPeriode = geldigheidsPeriode;
+            ToepassingsEenheid = toepassingsEenheid;
+            Percent = percent;
+        }
+        /// <summary>
+        /// Maakt een 'concrete' promotie met onderliggende prijscomponent waarop de promotie toegepast wordt
+        /// </summary>
+        /// <param name="geldigheidsPeriode"></param>
+        /// <param name="toepassingsEenheid"></param>
+        /// <param name="percent"></param>
+        /// <param name="prijsComponent"></param>
+        public PercentuelePromotie(Periode geldigheidsPeriode, PrijsEenheid toepassingsEenheid, double percent, IPrijs prijsComponent)
+        {
+            GeldigheidsPeriode = geldigheidsPeriode;
+            ToepassingsEenheid = toepassingsEenheid;
+            Percent = percent;
+            OnderliggendePrijsComponent = prijsComponent;
+        }
+        public override PrijsEenheid ToepassingsEenheid { get; set; } = PrijsEenheid.PerReservatie;
+        public override double Waarde { get => (_onderliggendePrijsComponent == null)? 0 : _onderliggendePrijsComponent.Waarde * Percent; }
+        public double Percent { get; set; }
+        public Periode GeldigheidsPeriode { get; set; }
+        public IPrijs OnderliggendePrijsComponent { get => _onderliggendePrijsComponent; set => _onderliggendePrijsComponent = value; }
+        /// <summary>
+        /// Maakt een nieuwe concrete promotie aan op basis 
+        /// van de virtuele promotie en het meegegeven prijsComponent
+        /// </summary>
+        /// <param name="prijsComponent"></param>
+        /// <returns></returns>
+        public PercentuelePromotie GetConcretePromotieOp(IPrijs prijsComponent)
+        {
+            return new PercentuelePromotie(GeldigheidsPeriode,
+                ToepassingsEenheid, Percent, prijsComponent);
+        }
+        public bool IsConcreet()
+        {
+            return _onderliggendePrijsComponent != null;
+        }
+    }
 
-    //public class Prijs : IPrijs
-    //{
-    //    private double _waarde;
-
-    //    public Prijs(double value, PrijsEenheid toepassingsEenheid)
-    //    {
-    //        Waarde = value;
-    //        ToepassingsEenheid = toepassingsEenheid;
-    //    }
-
-    //    public PrijsEenheid ToepassingsEenheid { get; set; }
-    //    public double Waarde
-    //    {
-    //        get => _waarde;
-    //        set
-    //        {
-    //            if (value >= 0) _waarde = value;
-    //            else throw new ArgumentOutOfRangeException("Negative price");
-    //        }
-    //    }
-    //}
 }
+

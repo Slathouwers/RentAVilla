@@ -10,15 +10,24 @@ namespace SndrLth.RentAVilla.Domain
         public Reservatie(Pand pand, Klant klant, Periode reservatiePeriode, int aantalPersonen)
         {
             // pand beschikbaar voor reservatiePeriode?
-            if(pand.GetOnbeschikbareNachten(reservatiePeriode).Any())
+            if (pand.GetOnbeschikbareNachten(reservatiePeriode).Any())
+            {
                 throw new ArgumentException($"Pand is onbeschikbaar voor periode" +
-                    $" {String.Join(", ",pand.GetOnbeschikbareNachten(reservatiePeriode))}");
+                    $" {string.Join(", ", pand.GetOnbeschikbareNachten(reservatiePeriode))}");
+            }
+            // reservatie voor geldig aantal personen?
             if (pand.MaxAantalPersonen < aantalPersonen)
+            {
                 throw new ArgumentException($"Reservatie voor {aantalPersonen} " +
                     $"personen overschrijdt maximum van {pand.MaxAantalPersonen} personen");
-            if(pand.MinVerblijfsduur > reservatiePeriode.AantalNachten)
+            }
+            // reservatie voor geldige verblijfsduur?
+            if (pand.MinVerblijfsduur > reservatiePeriode.AantalNachten)
+            {
                 throw new ArgumentException($"Reservatie voor {reservatiePeriode.AantalNachten} " +
                    $"nachten voldoet niet aan minimum van {pand.MinVerblijfsduur} nachten");
+            }
+
             Pand = pand;
             Klant = klant;
             ReservatiePeriode = reservatiePeriode;

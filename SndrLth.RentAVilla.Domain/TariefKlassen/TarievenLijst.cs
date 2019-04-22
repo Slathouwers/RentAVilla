@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using SndrLth.RentAVilla.Domain.Enums;
 
 namespace SndrLth.RentAVilla.Domain.TariefKlassen
@@ -20,6 +21,10 @@ namespace SndrLth.RentAVilla.Domain.TariefKlassen
             if (Exists(el => el.TariefType == item.TariefType))
                 throw new ArgumentException($"Tarief '{item.TariefType.ToString()}' heeft al een prijs!");
             base.Add(item);
+        }
+        public void Update(HuurPrijsPerNacht item)
+        {
+            Find(el => el.TariefType == item.TariefType).Waarde = item.Waarde;
         }
 
         public HuurPrijsPerNacht this[Tarief t]

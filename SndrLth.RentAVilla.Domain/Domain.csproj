@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AfroepContract.cs" />
     <Compile Include="Enums\ActieveLanden.cs" />
     <Compile Include="Enums\KlantCategorie.cs" />
     <Compile Include="Klant.cs" />
@@ -60,6 +61,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Enums\Tarief.cs" />
     <Compile Include="Reservatie.cs" />
+    <Compile Include="Staffelkorting.cs" />
+    <Compile Include="StaffelTranche.cs" />
     <Compile Include="TariefKlassen\TariefKalender.cs" />
     <Compile Include="TariefKlassen\TariefKalenderRegistratie.cs" />
     <Compile Include="TariefKlassen\TarievenLijst.cs" />
