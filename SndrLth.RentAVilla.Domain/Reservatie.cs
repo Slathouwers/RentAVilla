@@ -5,8 +5,6 @@ namespace SndrLth.RentAVilla.Domain
 {
     public class Reservatie
     {
-
-
         public Reservatie(Pand pand, Klant klant, Periode reservatiePeriode, int aantalPersonen)
         {
             // pand beschikbaar voor reservatiePeriode?

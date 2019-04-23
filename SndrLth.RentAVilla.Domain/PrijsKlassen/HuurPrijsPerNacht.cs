@@ -14,7 +14,7 @@ namespace SndrLth.RentAVilla.Domain.PrijsKlassen
             TariefType = tarief;
         }
         public Tarief TariefType { get; set; }
-        public override PrijsEenheid ToepassingsEenheid { get; set; } = PrijsEenheid.PerNacht;
+        public override PrijsEenheid ToepassingsEenheid { get; } = PrijsEenheid.PerNacht;
 
         public static explicit operator HuurPrijsPerNacht(double v)
         {

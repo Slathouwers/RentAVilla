@@ -83,5 +83,19 @@ namespace SndrLth.RentAVilla.DomainTests
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => (HuurPrijsPerNacht)(-50.00));
 
         }
+        [TestMethod]
+        public void MaakPrijsOfferteMetPrijsComponenten()
+        {
+            int aantalPersonen = 6;
+            int aantalNachten = 7;
+            HuurPrijsPerNacht huurPrijsPerNacht = new HuurPrijsPerNacht(Tarief.Hoogseizoen, 127.00);
+            Waarborg waarborg = new Waarborg(500.00);
+            SchoonmaakPrijs schoonmaak = new SchoonmaakPrijs(100.00);
+            PersoonsToeslagPerNacht persoonsToeslagPerNacht = new PersoonsToeslagPerNacht(25);
+            Periode promotiePeriode = new Periode("21/04/2019", "31/12/2019");
+            VastePrijsPromotie vastePrijsPromotie = new VastePrijsPromotie(promotiePeriode,-250.00);
+            PercentuelePromotie reservatieKorting = new PercentuelePromotie(promotiePeriode, -0.10); 
+            PercentuelePromotie huurPrijsPromotie = new PercentuelePromotie(promotiePeriode, -0.5, huurPrijsPerNacht);
+        }
     }
 }

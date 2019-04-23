@@ -13,7 +13,7 @@ namespace SndrLth.RentAVilla.Domain.PrijsKlassen
         {
             return new Waarborg(v);
         }
-        public override PrijsEenheid ToepassingsEenheid { get; set; } = PrijsEenheid.PerReservatie;
+        public override PrijsEenheid ToepassingsEenheid { get; } = PrijsEenheid.PerReservatie;
     }
 
 }

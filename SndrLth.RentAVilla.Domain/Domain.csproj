@@ -51,18 +51,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AfroepContract.cs" />
+    <Compile Include="Enums\KlantCategorieNaam.cs" />
+    <Compile Include="KlantCategorie.cs" />
     <Compile Include="Enums\ActieveLanden.cs" />
-    <Compile Include="Enums\KlantCategorie.cs" />
     <Compile Include="HuurPandCatalogus.cs" />
     <Compile Include="PrijsKlassen\HuurPrijsPerNacht.cs" />
-    <Compile Include="PrijsKlassen\IPrijs.cs" />
+    <Compile Include="PrijsKlassen\PrijsOfferte.cs" />
+    <Compile Include="PrijsKlassen\PrijsOfferteRegel.cs" />
+    <Compile Include="PrijsKlassen\IPrijsComponent.cs" />
     <Compile Include="Klant.cs" />
     <Compile Include="Pand.cs" />
     <Compile Include="Periode.cs" />
     <Compile Include="Enums\PrijsEenheid.cs" />
     <Compile Include="PrijsKlassen\PercentuelePromotie.cs" />
     <Compile Include="PrijsKlassen\PersoonsToeslagPerNacht.cs" />
-    <Compile Include="PrijsKlassen\PrijsComponent.cs" />
+    <Compile Include="PrijsKlassen\PrijsComponentDecorator.cs" />
     <Compile Include="PrijsKlassen\SchoonmaakPrijs.cs" />
     <Compile Include="PrijsKlassen\VastePrijsPromotie.cs" />
     <Compile Include="PrijsKlassen\Waarborg.cs" />

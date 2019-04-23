@@ -3,9 +3,9 @@
 namespace SndrLth.RentAVilla.Domain.PrijsKlassen
 {
     //Prijs interface
-    public interface IPrijs
+    public interface IPrijsComponent
     {
-        PrijsEenheid ToepassingsEenheid { get; set; }
+        PrijsEenheid ToepassingsEenheid { get; }
         double Waarde { get; set; }
     }
 

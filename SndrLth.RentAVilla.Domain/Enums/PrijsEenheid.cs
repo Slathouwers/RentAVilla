@@ -11,6 +11,8 @@ namespace SndrLth.RentAVilla.Domain.Enums
         PerPersoon = PerNacht << 1,
         // Combinaties
         PerPersoonPerNacht = PerNacht | PerPersoon,
-        PerReservatiePerPersoon = PerReservatie | PerPersoon
+        PerReservatiePerPersoon = PerReservatie | PerPersoon,
+        Subtotaal = PerNacht | PerPersoon | PerReservatie
+
     }
 }

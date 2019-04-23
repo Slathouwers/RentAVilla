@@ -1,6 +1,6 @@
 ﻿namespace SndrLth.RentAVilla.Domain
 {
-    public enum KlantCategorie
+    public enum KlantCategorieNaam
     {
         Particulier,
         Vip,

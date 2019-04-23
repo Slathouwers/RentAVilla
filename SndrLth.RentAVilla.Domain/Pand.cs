@@ -11,7 +11,7 @@ namespace SndrLth.RentAVilla.Domain
 
         private int _maxAantalPersonen;
         private int _minVerblijfsduur;
-
+        #region Constructors
         public Pand(TarievenLijst tarievenLijst,
                     TariefKalender tariefKalender,
                     ActieveLanden land,
@@ -64,7 +64,7 @@ namespace SndrLth.RentAVilla.Domain
             Waarborg = new Waarborg(0);
             PersoonsToeslagPerNacht = new PersoonsToeslagPerNacht(0.00);
         }
-
+        #endregion
         public TarievenLijst TarievenLijst { get; }
         public TariefKalender TariefKalender { get; set; }
         public ActieveLanden Land { get; set; }

@@ -12,7 +12,7 @@ namespace SndrLth.RentAVilla.DomainTests
         {
             Pand pand = new Pand();
             pand.MaxAantalPersonen = 6;
-            Klant klant = new Klant(KlantCategorie.Particulier, "Lathouwers");
+            Klant klant = new Klant(new KlantCategorie(KlantCategorieNaam.Particulier), "Lathouwers");
             int aantalPersonen = 6;
             Periode reservatiePeriode = new Periode("21/04/2019", "25/04/2019");
             Reservatie testReservatie = new Reservatie(pand, klant, reservatiePeriode, aantalPersonen);

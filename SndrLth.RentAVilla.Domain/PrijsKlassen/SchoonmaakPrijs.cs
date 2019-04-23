@@ -8,7 +8,7 @@ namespace SndrLth.RentAVilla.Domain.PrijsKlassen
         {
             Waarde = waarde;
         }
-        public override PrijsEenheid ToepassingsEenheid { get; set; } = PrijsEenheid.PerReservatie;
+        public override PrijsEenheid ToepassingsEenheid { get; } = PrijsEenheid.PerReservatie;
 
         public static explicit operator SchoonmaakPrijs(double v)
         {
