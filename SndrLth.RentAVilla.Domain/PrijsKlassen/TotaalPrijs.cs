@@ -2,7 +2,7 @@
 
 namespace SndrLth.RentAVilla.Domain.PrijsKlassen
 {
-    public class TotaalPrijs : IPrijsComponent
+    public class TotaalPrijs : IPrijs
     {
         public TotaalPrijs(double totaal)
         {

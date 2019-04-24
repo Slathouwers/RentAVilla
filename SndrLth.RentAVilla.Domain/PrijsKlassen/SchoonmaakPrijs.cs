@@ -2,7 +2,7 @@
 
 namespace SndrLth.RentAVilla.Domain.PrijsKlassen
 {
-    public class SchoonmaakPrijs : PrijsComponentDecorator
+    public class SchoonmaakPrijs : BasePrijsComponent
     {
         public SchoonmaakPrijs(double waarde)
         {

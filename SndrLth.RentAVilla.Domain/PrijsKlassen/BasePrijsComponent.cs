@@ -4,7 +4,7 @@ using SndrLth.RentAVilla.Domain.Enums;
 namespace SndrLth.RentAVilla.Domain.PrijsKlassen
 {
     // Abstract PrijsComponent decorator class
-    public abstract class PrijsComponentDecorator : IPrijsComponent
+    public abstract class BasePrijsComponent : IPrijs
     {
         private double _waarde;
         public abstract PrijsEenheid ToepassingsEenheid { get; }

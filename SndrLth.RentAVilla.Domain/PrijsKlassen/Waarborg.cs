@@ -3,7 +3,7 @@
 namespace SndrLth.RentAVilla.Domain.PrijsKlassen
 {
     //Concrete PrijsComponenten
-    public class Waarborg : PrijsComponentDecorator
+    public class Waarborg : BasePrijsComponent
     {
         public Waarborg(double waarde)
         {

@@ -2,7 +2,7 @@
 
 namespace SndrLth.RentAVilla.Domain.PrijsKlassen
 {
-    public class HuurPrijsPerNacht : PrijsComponentDecorator
+    public class HuurPrijsPerNacht : BasePrijsComponent
     {/// <summary>
     /// Maakt een tariefgebonden huurprijs per nacht
     /// </summary>

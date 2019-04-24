@@ -7,64 +7,64 @@ using System.Threading.Tasks;
 
 namespace SndrLth.RentAVilla.Domain.PrijsKlassen
 {
-    public class PrijsOfferte : List<PrijsOfferteRegel>, IPrijsComponent
+    public class PrijsOfferte : IPrijs, IPrijsOfferteOperations
     {
-        private TotaalPrijs _totaalPrijs;
+        private List<PrijsOfferteRegel> offerteRegels;
+        private readonly TotaalPrijs totaalPrijs;
         public PrijsOfferte() : base()
         {
-            _totaalPrijs = new TotaalPrijs(0);
+            totaalPrijs = new TotaalPrijs(0);
         }
-        public PrijsEenheid ToepassingsEenheid => ((IPrijsComponent)_totaalPrijs).ToepassingsEenheid;
+        public PrijsEenheid ToepassingsEenheid => totaalPrijs.ToepassingsEenheid;
         public double Waarde
         {
             get
             {
-
-                return ((IPrijsComponent)_totaalPrijs).Waarde;
+                return totaalPrijs.Waarde;
             }
         }
         public void BerekenTotaalPrijs()
         {
             double totaal = 0;
-            foreach (PrijsOfferteRegel regel in this)
+            foreach (PrijsOfferteRegel regel in offerteRegels)
             {
                 if (regel.PrijsComponent.ToepassingsEenheid != PrijsEenheid.None)
                 {
                     totaal += regel.Subtotaal;
                 }
             }
-            _totaalPrijs.Waarde = totaal;
+            totaalPrijs.Waarde = totaal;
         }
 
-        public void Add(IPrijsComponent prijsComponent, int aantal)
+        public void Add(IPrijs prijsComponent, int aantal)
         {
-            if (Exists(el => el.PrijsComponent == prijsComponent))
+            if (offerteRegels.Exists(el => el.PrijsComponent == prijsComponent))
             {
-                Find(el => el.PrijsComponent == prijsComponent).Eenheden += aantal;
+                offerteRegels.Find(el => el.PrijsComponent == prijsComponent).Eenheden += aantal;
             }
-            else Add(new PrijsOfferteRegel(prijsComponent, aantal));
+            else offerteRegels.Add(new PrijsOfferteRegel(prijsComponent, aantal));
             BerekenTotaalPrijs();
         }
 
-        public void Add(IPrijsComponent prijsComponent)
+        public void Add(IPrijs prijsComponent)
         {
 
-            if (Exists(el => el.PrijsComponent == prijsComponent))
+            if (offerteRegels.Exists(el => el.PrijsComponent == prijsComponent))
             {
-                Find(el => el.PrijsComponent == prijsComponent).Eenheden++;
+                offerteRegels.Find(el => el.PrijsComponent == prijsComponent).Eenheden++;
             }
-            else Add(new PrijsOfferteRegel(prijsComponent));
+            else offerteRegels.Add(new PrijsOfferteRegel(prijsComponent));
             BerekenTotaalPrijs();
         }
         public void Remove(Type type)
         {
-            RemoveAll(el => el.GetType() == type);
+            offerteRegels.RemoveAll(el => el.GetType() == type);
             BerekenTotaalPrijs();
         }
 
         public IEnumerable<string> PrintPrijsDetails()
         {
-            foreach (PrijsOfferteRegel regel in this)
+            foreach (PrijsOfferteRegel regel in offerteRegels)
             {
                 string regelhoofding = $"{nameof(regel.PrijsComponent)}";
                 regelhoofding += (regel.PrijsComponent.GetType() == typeof(HuurPrijsPerNacht)) ? $"{((HuurPrijsPerNacht)regel.PrijsComponent).TariefType.ToString()}" : "";

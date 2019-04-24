@@ -8,17 +8,17 @@ namespace SndrLth.RentAVilla.Domain.PrijsKlassen
 {
     public class PrijsOfferteRegel
     {
-        public PrijsOfferteRegel(IPrijsComponent prijsComponent, int hoeveelheid)
+        public PrijsOfferteRegel(IPrijs prijsComponent, int hoeveelheid)
         {
             PrijsComponent = prijsComponent;
             Eenheden = hoeveelheid;
         }
-        public PrijsOfferteRegel(IPrijsComponent prijsComponent)
+        public PrijsOfferteRegel(IPrijs prijsComponent)
         {
             PrijsComponent = prijsComponent;
             Eenheden = 1;
         }
-        public IPrijsComponent PrijsComponent { get; set; }
+        public IPrijs PrijsComponent { get; set; }
         public int Eenheden { get; set; }
         public double Subtotaal
         {

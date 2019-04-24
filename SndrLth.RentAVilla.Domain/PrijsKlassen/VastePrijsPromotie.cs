@@ -3,7 +3,7 @@ using System;
 
 namespace SndrLth.RentAVilla.Domain.PrijsKlassen
 {
-    public class VastePrijsPromotie : PrijsComponentDecorator
+    public class VastePrijsPromotie : BasePrijsComponent
 
     {/// <summary>
      /// Maakt een promotie voor een vast bedrag te korten per prijsEenheid

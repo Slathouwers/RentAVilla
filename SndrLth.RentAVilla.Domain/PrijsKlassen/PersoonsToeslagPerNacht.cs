@@ -2,7 +2,7 @@
 
 namespace SndrLth.RentAVilla.Domain.PrijsKlassen
 {
-    public class PersoonsToeslagPerNacht : PrijsComponentDecorator
+    public class PersoonsToeslagPerNacht : BasePrijsComponent
     {
         public PersoonsToeslagPerNacht(double waarde)
         {
