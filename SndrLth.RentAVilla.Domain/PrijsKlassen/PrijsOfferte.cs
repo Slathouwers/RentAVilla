@@ -14,6 +14,7 @@ namespace SndrLth.RentAVilla.Domain.PrijsKlassen
         public PrijsOfferte() : base()
         {
             totaalPrijs = new TotaalPrijs(0);
+            offerteRegels = new List<PrijsOfferteRegel>();
         }
         public PrijsEenheid ToepassingsEenheid => totaalPrijs.ToepassingsEenheid;
         public double Waarde
