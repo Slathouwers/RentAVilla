@@ -23,7 +23,7 @@ namespace SndrLth.RentAVilla.DomainTests
         {
             Periode periode = new Periode("22/04/2019", "26/04/2019");
             double percent = -0.25;
-            PrijsEenheid toepassingsEenheid = PrijsEenheid.PerReservatie;
+
             PercentuelePromotie promotie = new PercentuelePromotie(periode, percent);
             Assert.IsTrue(promotie.GetType() == typeof(PercentuelePromotie));
             Assert.IsTrue(promotie.Waarde == 0 && promotie.ToepassingsEenheid == PrijsEenheid.None);

@@ -88,14 +88,25 @@ namespace SndrLth.RentAVilla.DomainTests
         {
             int aantalPersonen = 6;
             int aantalNachten = 7;
+            PrijsOfferte offerte = new PrijsOfferte();
+            
             HuurPrijsPerNacht huurPrijsPerNacht = new HuurPrijsPerNacht(Tarief.Hoogseizoen, 127.00);
             Waarborg waarborg = new Waarborg(500.00);
             SchoonmaakPrijs schoonmaak = new SchoonmaakPrijs(100.00);
             PersoonsToeslagPerNacht persoonsToeslagPerNacht = new PersoonsToeslagPerNacht(25);
             Periode promotiePeriode = new Periode("21/04/2019", "31/12/2019");
             VastePrijsPromotie vastePrijsPromotie = new VastePrijsPromotie(promotiePeriode,-250.00);
-            PercentuelePromotie reservatieKorting = new PercentuelePromotie(promotiePeriode, -0.10); 
+            PercentuelePromotie reservatieKorting = new PercentuelePromotie(promotiePeriode, -0.10, offerte); 
             PercentuelePromotie huurPrijsPromotie = new PercentuelePromotie(promotiePeriode, -0.5, huurPrijsPerNacht);
+
+            offerte.Add(huurPrijsPerNacht , 7);
+            offerte.Add(waarborg);
+            offerte.Add(schoonmaak);
+            offerte.Add(persoonsToeslagPerNacht, 6*7);
+            offerte.Add(vastePrijsPromotie);
+            offerte.Add(reservatieKorting);
+            offerte.Add(huurPrijsPromotie,7);
+            Assert.IsTrue(offerte.Waarde != 0);
         }
     }
 }

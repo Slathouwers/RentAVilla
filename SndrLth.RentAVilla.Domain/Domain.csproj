@@ -67,6 +67,7 @@
     <Compile Include="PrijsKlassen\PersoonsToeslagPerNacht.cs" />
     <Compile Include="PrijsKlassen\PrijsComponentDecorator.cs" />
     <Compile Include="PrijsKlassen\SchoonmaakPrijs.cs" />
+    <Compile Include="PrijsKlassen\TotaalPrijs.cs" />
     <Compile Include="PrijsKlassen\VastePrijsPromotie.cs" />
     <Compile Include="PrijsKlassen\Waarborg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
