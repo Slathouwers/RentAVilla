@@ -50,39 +50,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AfroepContract.cs" />
+    <Compile Include="Klanten\AfroepContract.cs" />
+    <Compile Include="Prijzen\PrijsOffertes\PrijsOfferteBuilder.cs" />
+    <Compile Include="Prijzen\Promoties\BasePromotieComponent.cs" />
     <Compile Include="Enums\KlantCategorieNaam.cs" />
-    <Compile Include="KlantCategorie.cs" />
+    <Compile Include="Panden\PandBuilder.cs" />
+    <Compile Include="Klanten\KlantCategorie.cs" />
     <Compile Include="Enums\ActieveLanden.cs" />
-    <Compile Include="HuurPandCatalogus.cs" />
-    <Compile Include="PrijsKlassen\HuurPrijsPerNacht.cs" />
-    <Compile Include="PrijsKlassen\IPrijsOfferteOperations.cs" />
-    <Compile Include="PrijsKlassen\PrijsOfferte.cs" />
-    <Compile Include="PrijsKlassen\PrijsOfferteRegel.cs" />
-    <Compile Include="PrijsKlassen\IPrijs.cs" />
-    <Compile Include="Klant.cs" />
-    <Compile Include="Pand.cs" />
+    <Compile Include="Panden\HuurPandCatalogus.cs" />
+    <Compile Include="Prijzen\PandPrijzen\HuurPrijsPerNacht.cs" />
+    <Compile Include="Prijzen\PrijsOffertes\IPrijsOfferteOperations.cs" />
+    <Compile Include="Prijzen\PrijsOffertes\PrijsOfferte.cs" />
+    <Compile Include="Prijzen\PrijsOffertes\PrijsOfferteRegel.cs" />
+    <Compile Include="Prijzen\IPrijs.cs" />
+    <Compile Include="Klanten\Klant.cs" />
+    <Compile Include="Panden\Pand.cs" />
     <Compile Include="Periode.cs" />
     <Compile Include="Enums\PrijsEenheid.cs" />
-    <Compile Include="PrijsKlassen\PercentuelePromotie.cs" />
-    <Compile Include="PrijsKlassen\PersoonsToeslagPerNacht.cs" />
-    <Compile Include="PrijsKlassen\BasePrijsComponent.cs" />
-    <Compile Include="PrijsKlassen\SchoonmaakPrijs.cs" />
-    <Compile Include="PrijsKlassen\TotaalPrijs.cs" />
-    <Compile Include="PrijsKlassen\VastePrijsPromotie.cs" />
-    <Compile Include="PrijsKlassen\Waarborg.cs" />
+    <Compile Include="Prijzen\Promoties\PercentuelePromotie.cs" />
+    <Compile Include="Prijzen\PandPrijzen\PersoonsToeslagPerNacht.cs" />
+    <Compile Include="Prijzen\PandPrijzen\BasePrijsComponent.cs" />
+    <Compile Include="Prijzen\PandPrijzen\SchoonmaakPrijs.cs" />
+    <Compile Include="Prijzen\PrijsOffertes\TotaalPrijs.cs" />
+    <Compile Include="Prijzen\Promoties\VastePrijsPromotie.cs" />
+    <Compile Include="Prijzen\PandPrijzen\Waarborg.cs" />
+    <Compile Include="Prijzen\Promoties\Promoties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Enums\Tarief.cs" />
     <Compile Include="Reservatie.cs" />
-    <Compile Include="Staffelkorting.cs" />
-    <Compile Include="StaffelTranche.cs" />
-    <Compile Include="TariefKlassen\TariefKalender.cs" />
-    <Compile Include="TariefKlassen\TariefKalenderRegistratie.cs" />
-    <Compile Include="TariefKlassen\TarievenLijst.cs" />
+    <Compile Include="Klanten\Staffelkorting.cs" />
+    <Compile Include="Klanten\StaffelTranche.cs" />
+    <Compile Include="Tarieven\TariefKalender.cs" />
+    <Compile Include="Tarieven\TariefKalenderRegistratie.cs" />
+    <Compile Include="Tarieven\TarievenLijst.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

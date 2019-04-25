@@ -1,6 +1,6 @@
-﻿using SndrLth.RentAVilla.Domain.PrijsKlassen;
+﻿using SndrLth.RentAVilla.Domain.Prijzen.Promoties;
 
-namespace SndrLth.RentAVilla.Domain
+namespace SndrLth.RentAVilla.Domain.Klanten
 {
     public class StaffelTranche
     {

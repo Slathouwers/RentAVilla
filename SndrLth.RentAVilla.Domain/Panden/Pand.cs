@@ -1,61 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using SndrLth.RentAVilla.Domain.Enums;
-using SndrLth.RentAVilla.Domain.PrijsKlassen;
-using SndrLth.RentAVilla.Domain.TariefKlassen;
+using SndrLth.RentAVilla.Domain.Prijzen.PandPrijzen;
+using SndrLth.RentAVilla.Domain.Tarieven;
 
-namespace SndrLth.RentAVilla.Domain
+namespace SndrLth.RentAVilla.Domain.Panden
 {
     public class Pand
     {
-
         private int _maxAantalPersonen;
         private int _minVerblijfsduur;
+
         #region Constructors
-        public Pand(TarievenLijst tarievenLijst,
-                    TariefKalender tariefKalender,
-                    ActieveLanden land,
-                    string regio,
-                    string plaats,
-                    SchoonmaakPrijs schoonmaakPrijs,
-                    Waarborg waarborg,
-                    PersoonsToeslagPerNacht persoonsToeslagPerNacht,
-                    int maxAantalPersonen,
-                    int minVerblijfsduur)
+
+        public Pand(string naam)
         {
-            TarievenLijst = tarievenLijst;
-            TariefKalender = tariefKalender;
-            Land = land;
-            Regio = regio;
-            Plaats = plaats;
-            SchoonmaakPrijs = schoonmaakPrijs;
-            Waarborg = waarborg;
-            PersoonsToeslagPerNacht = persoonsToeslagPerNacht;
-            MaxAantalPersonen = maxAantalPersonen;
-            MinVerblijfsduur = minVerblijfsduur;
-        }
-        public Pand(ActieveLanden land,
-                    string regio,
-                    string plaats,
-                    SchoonmaakPrijs schoonmaakPrijs,
-                    Waarborg waarborg,
-                    PersoonsToeslagPerNacht persoonsToeslagPerNacht,
-                    int maxAantalPersonen,
-                    int minVerblijfsduur)
-        {
-            TarievenLijst = new TarievenLijst();
-            TariefKalender = new TariefKalender();
-            Land = land;
-            Regio = regio;
-            Plaats = plaats;
-            SchoonmaakPrijs = schoonmaakPrijs;
-            Waarborg = waarborg;
-            PersoonsToeslagPerNacht = persoonsToeslagPerNacht;
-            MaxAantalPersonen = maxAantalPersonen;
-            MinVerblijfsduur = minVerblijfsduur;
-        }
-        public Pand()
-        {
+            Naam = naam;
             _maxAantalPersonen = 0;
             _minVerblijfsduur = 0;
             TarievenLijst = new TarievenLijst();
@@ -64,8 +24,11 @@ namespace SndrLth.RentAVilla.Domain
             Waarborg = new Waarborg(0);
             PersoonsToeslagPerNacht = new PersoonsToeslagPerNacht(0.00);
         }
+
         #endregion
-        public TarievenLijst TarievenLijst { get; }
+
+        public string Naam { get; }
+        public TarievenLijst TarievenLijst { get; set; }
         public TariefKalender TariefKalender { get; set; }
         public ActieveLanden Land { get; set; }
         public string Regio { get; set; }
@@ -111,12 +74,12 @@ namespace SndrLth.RentAVilla.Domain
         {
             PersoonsToeslagPerNacht.Waarde = value;
         }
+
         public IEnumerable<DateTime> GetOnbeschikbareNachten(Periode reservatiePeriode)
         {
-            foreach (DateTime d in reservatiePeriode.GetNachten())
-            {
-                if (TariefKalender.GetTariefTypeVoorDatum(d) == Tarief.Onbeschikbaar) yield return d;
-            }
+            foreach (var d in reservatiePeriode.GetNachten())
+                if (TariefKalender.GetTariefTypeVoorDatum(d) == Tarief.Onbeschikbaar)
+                    yield return d;
         }
     }
 

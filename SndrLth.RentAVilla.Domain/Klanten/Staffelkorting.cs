@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using SndrLth.RentAVilla.Domain.Enums;
+using SndrLth.RentAVilla.Domain.Prijzen.Promoties;
 
-namespace SndrLth.RentAVilla.Domain
+namespace SndrLth.RentAVilla.Domain.Klanten
 {
     public class Staffelkorting
     {
@@ -9,9 +11,10 @@ namespace SndrLth.RentAVilla.Domain
             Naam = "Geen Korting";
             KlantCategorieLijst = new List<KlantCategorieNaam>();
             StaffelTrancheLijst = new List<StaffelTranche>();
-            StaffelTrancheLijst.Add(new StaffelTranche(1, new PrijsKlassen.PercentuelePromotie(0)));
+            StaffelTrancheLijst.Add(new StaffelTranche(1, new PercentuelePromotie(0)));
 
         }
+
         public Staffelkorting(string naam)
         {
             Naam = naam;

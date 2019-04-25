@@ -1,13 +1,14 @@
 ﻿using System;
 using SndrLth.RentAVilla.Domain.Enums;
 
-namespace SndrLth.RentAVilla.Domain.PrijsKlassen
+namespace SndrLth.RentAVilla.Domain.Prijzen.PandPrijzen
 {
     // Abstract PrijsComponent decorator class
     public abstract class BasePrijsComponent : IPrijs
     {
         private double _waarde;
         public abstract PrijsEenheid ToepassingsEenheid { get; }
+
         public virtual double Waarde
         {
             get => _waarde;
@@ -20,4 +21,3 @@ namespace SndrLth.RentAVilla.Domain.PrijsKlassen
     }
 
 }
-

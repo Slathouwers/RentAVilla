@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SndrLth.RentAVilla.Domain;
 using SndrLth.RentAVilla.Domain.Enums;
-using SndrLth.RentAVilla.Domain.TariefKlassen;
+using SndrLth.RentAVilla.Domain.Tarieven;
 
 namespace SndrLth.RentAVilla.DomainTests
 {

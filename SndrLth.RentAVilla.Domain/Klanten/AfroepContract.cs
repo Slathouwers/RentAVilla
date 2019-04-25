@@ -1,6 +1,6 @@
-﻿using SndrLth.RentAVilla.Domain.PrijsKlassen;
+﻿using SndrLth.RentAVilla.Domain.Prijzen.Promoties;
 
-namespace SndrLth.RentAVilla.Domain
+namespace SndrLth.RentAVilla.Domain.Klanten
 {
     public class AfroepContract
     {
@@ -12,9 +12,9 @@ namespace SndrLth.RentAVilla.Domain
             VastePrijsPromotie = vastePrijsPromotie;
         }
 
-        public Klant Klant { get; private set; }
-        public Periode Periode { get; private set; }
-        public int OvernachtingsQuota { get; private set; }
-        public VastePrijsPromotie VastePrijsPromotie { get; private set; }
+        public Klant Klant { get; }
+        public Periode Periode { get; }
+        public int OvernachtingsQuota { get; }
+        public VastePrijsPromotie VastePrijsPromotie { get; }
     }
 }

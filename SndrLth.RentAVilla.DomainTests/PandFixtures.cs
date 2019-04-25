@@ -2,19 +2,22 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SndrLth.RentAVilla.Domain;
 using SndrLth.RentAVilla.Domain.Enums;
+using SndrLth.RentAVilla.Domain.Panden;
 
 namespace SndrLth.RentAVilla.DomainTests
 {
+    
 
     [TestClass]
     public class PandFixtures
     {
-        public Pand Pand { get; set; } = new Pand();
+        private static PandBuilder pandBuilder = new PandBuilder();
+        public Pand Pand { get; set; } = pandBuilder.CreatePand("testvilla").Get();
 
         [TestMethod]
         public void NewPandCreated()
         {
-            Pand = new Pand();
+            Pand = pandBuilder.CreatePand("testvilla").Get();
             Assert.IsInstanceOfType(Pand, typeof(Pand));
         }
 

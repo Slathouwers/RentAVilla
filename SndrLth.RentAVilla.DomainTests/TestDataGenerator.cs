@@ -1,17 +1,20 @@
 ﻿using SndrLth.RentAVilla.Domain;
 using SndrLth.RentAVilla.Domain.Enums;
-using SndrLth.RentAVilla.Domain.PrijsKlassen;
-using SndrLth.RentAVilla.Domain.TariefKlassen;
+using SndrLth.RentAVilla.Domain.Prijzen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SndrLth.RentAVilla.Domain.Panden;
+using SndrLth.RentAVilla.Domain.Prijzen.PandPrijzen;
+using SndrLth.RentAVilla.Domain.Tarieven;
 
 namespace SndrLth.RentAVilla.DomainTests
 {
     public class TestDataGenerator
     {
+        private static PandBuilder _pandBuilder = new PandBuilder();
         public static TarievenLijst GetTestTarievenLijst()
         {
             TarievenLijst testTarievenLijst = new TarievenLijst();
@@ -60,16 +63,24 @@ namespace SndrLth.RentAVilla.DomainTests
         }
         public static Pand GetTestPand()
         {
-            return new Pand(tarievenLijst: GetTestTarievenLijst(),
-                            tariefKalender: GetTariefKalender(),
-                            land: GetActiefLand(),
-                            regio: GetRegio(),
-                            plaats: "TestPlaats",
-                            schoonmaakPrijs: (SchoonmaakPrijs)GetRandomDoubleBetween(50,150),
-                            waarborg: (Waarborg)GetRandomDoubleBetween(500, 950),
-                            persoonsToeslagPerNacht: (PersoonsToeslagPerNacht)GetRandomDoubleBetween(10, 25),
-                            maxAantalPersonen: GetRandomIntegerBetween(2,15),
-                            minVerblijfsduur: GetRandomIntegerBetween(1,6));
+            Pand p = _pandBuilder
+                .CreatePand("testpand")
+                .MetLocation(GetActiefLand(), 
+                             GetRegio(),
+                             "TestPlaats")
+                .MetPrijzen((SchoonmaakPrijs)GetRandomDoubleBetween(50, 150),
+                            (Waarborg)GetRandomDoubleBetween(500, 950),
+                            (PersoonsToeslagPerNacht)GetRandomDoubleBetween(10, 25))
+                .MetLimieten(GetRandomIntegerBetween(2, 15),
+                             GetRandomIntegerBetween(1, 6))
+                .Get();
+            p.TariefKalender = GetTariefKalender();
+            p.TarievenLijst = GetTestTarievenLijst();
+            return p;
+
+
+
+
         }
         
     }

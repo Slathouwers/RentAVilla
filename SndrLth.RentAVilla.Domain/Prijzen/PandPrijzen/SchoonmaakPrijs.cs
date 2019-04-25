@@ -1,6 +1,6 @@
 ﻿using SndrLth.RentAVilla.Domain.Enums;
 
-namespace SndrLth.RentAVilla.Domain.PrijsKlassen
+namespace SndrLth.RentAVilla.Domain.Prijzen.PandPrijzen
 {
     public class SchoonmaakPrijs : BasePrijsComponent
     {
@@ -8,6 +8,7 @@ namespace SndrLth.RentAVilla.Domain.PrijsKlassen
         {
             Waarde = waarde;
         }
+
         public override PrijsEenheid ToepassingsEenheid { get; } = PrijsEenheid.PerReservatie;
 
         public static explicit operator SchoonmaakPrijs(double v)
@@ -17,4 +18,3 @@ namespace SndrLth.RentAVilla.Domain.PrijsKlassen
     }
 
 }
-

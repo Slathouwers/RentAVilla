@@ -1,6 +1,6 @@
 ﻿using SndrLth.RentAVilla.Domain.Enums;
 
-namespace SndrLth.RentAVilla.Domain.PrijsKlassen
+namespace SndrLth.RentAVilla.Domain.Prijzen.PandPrijzen
 {
     //Concrete PrijsComponenten
     public class Waarborg : BasePrijsComponent
@@ -9,12 +9,13 @@ namespace SndrLth.RentAVilla.Domain.PrijsKlassen
         {
             Waarde = waarde;
         }
+
+        public override PrijsEenheid ToepassingsEenheid { get; } = PrijsEenheid.PerReservatie;
+
         public static explicit operator Waarborg(double v)
         {
             return new Waarborg(v);
         }
-        public override PrijsEenheid ToepassingsEenheid { get; } = PrijsEenheid.PerReservatie;
     }
 
 }
-

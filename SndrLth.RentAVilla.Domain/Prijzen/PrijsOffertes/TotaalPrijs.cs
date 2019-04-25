@@ -1,6 +1,6 @@
 ﻿using SndrLth.RentAVilla.Domain.Enums;
 
-namespace SndrLth.RentAVilla.Domain.PrijsKlassen
+namespace SndrLth.RentAVilla.Domain.Prijzen.PrijsOffertes
 {
     public class TotaalPrijs : IPrijs
     {
@@ -10,7 +10,6 @@ namespace SndrLth.RentAVilla.Domain.PrijsKlassen
         }
 
         public PrijsEenheid ToepassingsEenheid => PrijsEenheid.PerReservatie;
-
         public double Waarde { get; set; }
     }
 }

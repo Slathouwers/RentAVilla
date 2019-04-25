@@ -1,6 +1,6 @@
 ﻿using SndrLth.RentAVilla.Domain.Enums;
 
-namespace SndrLth.RentAVilla.Domain.PrijsKlassen
+namespace SndrLth.RentAVilla.Domain.Prijzen
 {
     //Prijs interface
     public interface IPrijs
@@ -10,4 +10,3 @@ namespace SndrLth.RentAVilla.Domain.PrijsKlassen
     }
 
 }
-

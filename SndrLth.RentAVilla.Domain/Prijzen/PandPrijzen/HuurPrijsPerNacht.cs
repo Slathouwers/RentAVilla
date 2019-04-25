@@ -1,18 +1,20 @@
 ﻿using SndrLth.RentAVilla.Domain.Enums;
 
-namespace SndrLth.RentAVilla.Domain.PrijsKlassen
+namespace SndrLth.RentAVilla.Domain.Prijzen.PandPrijzen
 {
-    public class HuurPrijsPerNacht : BasePrijsComponent
-    {/// <summary>
-    /// Maakt een tariefgebonden huurprijs per nacht
-    /// </summary>
-    /// <param name="tarief"></param>
-    /// <param name="waarde"></param>
+    public sealed class HuurPrijsPerNacht : BasePrijsComponent
+    {
+        /// <summary>
+        ///     Maakt een tariefgebonden huurprijs per nacht
+        /// </summary>
+        /// <param name="tarief"></param>
+        /// <param name="waarde"></param>
         public HuurPrijsPerNacht(Tarief tarief, double waarde)
         {
             Waarde = waarde;
             TariefType = tarief;
         }
+
         public Tarief TariefType { get; set; }
         public override PrijsEenheid ToepassingsEenheid { get; } = PrijsEenheid.PerNacht;
 
@@ -23,4 +25,3 @@ namespace SndrLth.RentAVilla.Domain.PrijsKlassen
     }
 
 }
-

@@ -1,4 +1,4 @@
-﻿namespace SndrLth.RentAVilla.Domain
+﻿namespace SndrLth.RentAVilla.Domain.Enums
 {
     public enum KlantCategorieNaam
     {

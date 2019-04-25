@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SndrLth.RentAVilla.Domain.Enums;
 
-namespace SndrLth.RentAVilla.Domain
+namespace SndrLth.RentAVilla.Domain.Klanten
 {
     public class KlantCategorie
     {
@@ -12,6 +8,7 @@ namespace SndrLth.RentAVilla.Domain
         {
             Naam = naam;
         }
+
         public KlantCategorie(KlantCategorieNaam naam, Staffelkorting staffelkorting)
         {
             Naam = naam;

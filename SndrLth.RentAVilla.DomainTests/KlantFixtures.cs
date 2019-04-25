@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SndrLth.RentAVilla.Domain;
+using SndrLth.RentAVilla.Domain.Enums;
+using SndrLth.RentAVilla.Domain.Klanten;
 
 namespace SndrLth.RentAVilla.DomainTests
 {

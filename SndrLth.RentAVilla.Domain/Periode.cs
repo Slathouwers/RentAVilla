@@ -16,11 +16,9 @@ namespace SndrLth.RentAVilla.Domain
 
         public Periode(string startDateString, string eindDateString)
         {
-            if (!DateTime.TryParse(startDateString, out this.start) ||
-                !DateTime.TryParse(eindDateString, out this.eind))
-            {
+            if (!DateTime.TryParse(startDateString, out start) ||
+                !DateTime.TryParse(eindDateString, out eind))
                 throw new ArgumentException($"Start('{startDateString}') or Eind('{eindDateString}') string do not have valid date formats!");
-            }
         }
 
         public DateTime Eind
@@ -33,12 +31,18 @@ namespace SndrLth.RentAVilla.Domain
                 eind = value;
             }
         }
-        public DateTime Start { get => start; set => start = value; }
+        public DateTime Start
+        {
+            get => start;
+            set => start = value;
+        }
         public int AantalNachten => Eind.Date.Subtract(Start.Date).Days;
+
         public bool Overlapt(Periode p)
         {
             return Start.Date < p.Eind.Date && Eind > p.Start.Date;
         }
+
         public bool Overlapt(DateTime d)
         {
             return Start.Date <= d && Eind > d;
@@ -48,17 +52,15 @@ namespace SndrLth.RentAVilla.Domain
         {
             return $"Start: {start.ToString("dd/MM/yyyy")}, Eind: {eind.ToString("dd/MM/yyyy")}.";
         }
+
         /// <summary>
-        /// Returns Dates that include nights 
-        /// ex. 21/04/2019 to 23/04/2019 returns 21/4 and 22/4 
+        ///     Returns Dates that include nights
+        ///     ex. 21/04/2019 to 23/04/2019 returns 21/4 and 22/4
         /// </summary>
         /// <returns></returns>
         public IEnumerable<DateTime> GetNachten()
         {
-            for (DateTime d = Start; d < Eind; d = d.AddDays(1))
-            {
-                yield return d;
-            }
+            for (var d = Start; d < Eind; d = d.AddDays(1)) yield return d;
         }
     }
 }

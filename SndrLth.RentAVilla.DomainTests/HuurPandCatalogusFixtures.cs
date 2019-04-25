@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SndrLth.RentAVilla.Domain;
-using SndrLth.RentAVilla.Domain.Enums;
-using SndrLth.RentAVilla.Domain.PrijsKlassen;
-using SndrLth.RentAVilla.Domain.TariefKlassen;
+using SndrLth.RentAVilla.Domain.Panden;
 
-namespace SndrLth.RentAVilla.DomainTests.TODO
+namespace SndrLth.RentAVilla.DomainTests
 {
    
     /// <summary>

@@ -1,7 +1,7 @@
 ﻿using System;
 using SndrLth.RentAVilla.Domain.Enums;
 
-namespace SndrLth.RentAVilla.Domain.TariefKlassen
+namespace SndrLth.RentAVilla.Domain.Tarieven
 {
     public class TariefKalenderRegistratie
     {
