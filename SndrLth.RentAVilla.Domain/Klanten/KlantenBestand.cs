@@ -8,22 +8,10 @@ using System.Threading.Tasks;
 
 namespace SndrLth.RentAVilla.Domain.Klanten
 {
-    public class KlantenBestand : IEnumerable<Klant>
+    public class KlantenBestand : List<Klant>
     {
-        private IEnumerable<Klant> klanten;
-        public KlantenBestand()
+        public KlantenBestand() : base()
         {
-            klanten = new Collection<Klant>();
-        }
-
-        public IEnumerator<Klant> GetEnumerator()
-        {
-            return klanten.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return klanten.GetEnumerator();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace SndrLth.RentAVilla.Domain.Klanten
         public Klant MaakKlant(string klantNaam, KlantCategorieNaam klantCategorieNaam)
         {
             if(!_klantCategorieën.Exists(cat => cat.Naam == klantCategorieNaam)) _klantCategorieën.Add(new KlantCategorie(klantCategorieNaam));
-            return new Klant(_klantCategorieën.First<KlantCategorie>(cat => cat.Naam == klantCategorieNaam),klantNaam);
+            return new Klant(_klantCategorieën.First(cat => cat.Naam == klantCategorieNaam),klantNaam);
         }
 
     }

@@ -30,7 +30,7 @@ namespace SndrLth.RentAVilla.DomainTests.TODO
         }
 
         [TestMethod]
-        public void CanCreateKlantCategorieen()
+        public void CanCreateKlantCategorieenWithStaffelkortingen()
         {
             CreateRentingService();
             AddKlantCatergorieParticulierEnReisbureau();
@@ -42,7 +42,20 @@ namespace SndrLth.RentAVilla.DomainTests.TODO
                 Exists(cat => cat.Naam == KlantCategorieNaam.Particulier &&
                               cat.Staffelkorting.Naam == "Geen Korting"));
         }
+        [TestMethod]
+        public void CanCreateKlantenWithCategorieAndStaffelkorting()
+        {
+            CreateRentingService();
+            AddKlantCatergorieParticulierEnReisbureau();
+            Klant particulier = RentAVillaRentingService.KlantBuilder.MaakKlant("Lathouwers", KlantCategorieNaam.Particulier);
+            Klant reisbureau = RentAVillaRentingService.KlantBuilder.MaakKlant("Traveling Lathouwers NV", KlantCategorieNaam.Reisagentschap);
+            RentAVillaRentingService.KlantenBestand.Add(particulier);
+            RentAVillaRentingService.KlantenBestand.Add(reisbureau);
+            Assert.IsTrue(RentAVillaRentingService.KlantenBestand.Count == 2);
+            Assert.IsTrue(RentAVillaRentingService.KlantenBestand.Exists(el => el.Naam == "Lathouwers" && el.Categorie.Staffelkorting.Naam == "Geen Korting"));
+            Assert.IsTrue(RentAVillaRentingService.KlantenBestand.Exists(el => el.Naam == "Traveling Lathouwers NV" && el.Categorie.Staffelkorting.Naam == "Grote Omzet"));
 
+        }
         private void AddKlantCatergorieParticulierEnReisbureau()
         {
             Staffelkorting groteOmzetStaffel = TestData.GetGroteOmzetStaffelkorting();
