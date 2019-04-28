@@ -14,10 +14,10 @@ namespace SndrLth.RentAVilla.Domain
         {
             PandBuilder = new PandBuilder(); //tested
             HuurPanden = new HuurPandCatalogus(); //tested
-            ReservatieBoek = new ReservatieBoek();
+            ReservatieBoek = new ReservatieBoek();//tested
             Promoties = new Promoties(); //tested
-            PrijsOfferteBuilder = new PrijsOfferteBuilder(Promoties);
-            ReservatieBuilder = new ReservatieBuilder(PrijsOfferteBuilder);
+            PrijsOfferteBuilder = new PrijsOfferteBuilder(Promoties);//tested
+            ReservatieBuilder = new ReservatieBuilder(PrijsOfferteBuilder);//tested
             KlantenBestand = new KlantenBestand(); //tested
             KlantCategorieën = new List<KlantCategorie>(); //tested
             AfroepContracten = new List<AfroepContract>(); //tested
