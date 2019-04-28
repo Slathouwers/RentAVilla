@@ -4,7 +4,7 @@ using System.Linq;
 using SndrLth.RentAVilla.Domain.Enums;
 using SndrLth.RentAVilla.Domain.Reservaties;
 
-namespace SndrLth.RentAVilla.Domain.Tarieven
+namespace SndrLth.RentAVilla.Domain.Panden.Tarieven
 {
     public class TariefKalender : List<TariefKalenderRegistratie>
     {
@@ -34,9 +34,11 @@ namespace SndrLth.RentAVilla.Domain.Tarieven
             Tarief laatsteType;
             //Delete all overlapping KalenderRegistraties except last registration in periode => set startdate equal to periode.eindeq
             var overlaps = this.Where(registratie => periode.Overlapt(registratie.StartDatum));
-            if (overlaps.Count() != 0)
+            IEnumerable<TariefKalenderRegistratie> tariefKalenderRegistraties = overlaps.ToList();
+            if (tariefKalenderRegistraties.Count() != 0)
             {
-                laatsteType = this.Single(registratie => registratie.StartDatum == overlaps.Max(overlapReg => overlapReg.StartDatum)).TariefType;
+                laatsteType = this.Single(registratie =>
+                    registratie.StartDatum == tariefKalenderRegistraties.Max(overlapReg => overlapReg.StartDatum)).TariefType;
                 RemoveAll(registratie => periode.Overlapt(registratie.StartDatum));
 
             }
@@ -55,9 +57,11 @@ namespace SndrLth.RentAVilla.Domain.Tarieven
         {
             Tarief laatsteType;
             var overlaps = this.Where(registratie => periode.Overlapt(registratie.StartDatum));
-            if (overlaps.Count() != 0)
+            IEnumerable<TariefKalenderRegistratie> tariefKalenderRegistraties = overlaps.ToList();
+            if (tariefKalenderRegistraties.Count() != 0)
             {
-                laatsteType = this.Single(registratie => registratie.StartDatum == overlaps.Max(overlapReg => overlapReg.StartDatum)).TariefType;
+                laatsteType = this.Single(registratie =>
+                    registratie.StartDatum == tariefKalenderRegistraties.Max(overlapReg => overlapReg.StartDatum)).TariefType;
                 ForEach(registratie =>
                 {
                     registratie.TariefType = registratie.TariefType != Tarief.Onbeschikbaar ? tarief : Tarief.Onbeschikbaar;

@@ -2,7 +2,7 @@
 
 namespace SndrLth.RentAVilla.Domain.Prijzen.PandPrijzen
 {
-    public class SchoonmaakPrijs : BasePrijsComponent
+    public sealed class SchoonmaakPrijs : BasePrijsComponent
     {
         public SchoonmaakPrijs(double waarde)
         {

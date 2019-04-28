@@ -3,7 +3,7 @@
 namespace SndrLth.RentAVilla.Domain.Prijzen.PandPrijzen
 {
     //Concrete PrijsComponenten
-    public class Waarborg : BasePrijsComponent
+    public sealed class Waarborg : BasePrijsComponent
     {
         public Waarborg(double waarde)
         {

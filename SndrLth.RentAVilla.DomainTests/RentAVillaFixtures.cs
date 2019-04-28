@@ -8,7 +8,7 @@ using SndrLth.RentAVilla.Domain.Prijzen.Promoties;
 using SndrLth.RentAVilla.Domain.Reservaties;
 using TestData = SndrLth.RentAVilla.DomainTests.TestDataGenerator;
 
-namespace SndrLth.RentAVilla.DomainTests.TODO
+namespace SndrLth.RentAVilla.DomainTests
 {
     [TestClass]
     public class RentAVillaFixtures
@@ -37,12 +37,10 @@ namespace SndrLth.RentAVilla.DomainTests.TODO
             CreateRentingService();
             AddKlantCatergorieParticulierEnReisbureau();
             Assert.IsTrue(RentAVillaRentingService.KlantCategorieën.Count == 2);
-            Assert.IsTrue(RentAVillaRentingService.KlantCategorieën.
-                Exists(cat => cat.Naam == KlantCategorieNaam.Reisagentschap &&
-                                    cat.Staffelkorting.Naam == "Grote Omzet"));
-            Assert.IsTrue(RentAVillaRentingService.KlantCategorieën.
-                Exists(cat => cat.Naam == KlantCategorieNaam.Particulier &&
-                              cat.Staffelkorting.Naam == "Geen Korting"));
+            Assert.IsTrue(RentAVillaRentingService.KlantCategorieën.Exists(cat => cat.Naam == KlantCategorieNaam.Reisagentschap &&
+                                                                                  cat.Staffelkorting.Naam == "Grote Omzet"));
+            Assert.IsTrue(RentAVillaRentingService.KlantCategorieën.Exists(cat => cat.Naam == KlantCategorieNaam.Particulier &&
+                                                                                  cat.Staffelkorting.Naam == "Geen Korting"));
         }
 
         [TestMethod]
@@ -62,8 +60,10 @@ namespace SndrLth.RentAVilla.DomainTests.TODO
             AddKlantCatergorieParticulierEnReisbureau();
             AddParticulierAndReisbureauToKlantenBestand();
             Assert.IsTrue(RentAVillaRentingService.KlantenBestand.Count == 2);
-            Assert.IsTrue(RentAVillaRentingService.KlantenBestand.Exists(el => el.Naam == "Lathouwers" && el.Categorie.Staffelkorting.Naam == "Geen Korting"));
-            Assert.IsTrue(RentAVillaRentingService.KlantenBestand.Exists(el => el.Naam == "Traveling Lathouwers NV" && el.Categorie.Staffelkorting.Naam == "Grote Omzet"));
+            Assert.IsTrue(RentAVillaRentingService.KlantenBestand.Exists(el =>
+                el.Naam == "Lathouwers" && el.Categorie.Staffelkorting.Naam == "Geen Korting"));
+            Assert.IsTrue(RentAVillaRentingService.KlantenBestand.Exists(el =>
+                el.Naam == "Traveling Lathouwers NV" && el.Categorie.Staffelkorting.Naam == "Grote Omzet"));
         }
 
         [TestMethod]
@@ -90,12 +90,14 @@ namespace SndrLth.RentAVilla.DomainTests.TODO
             Klant particulier = RentAVillaRentingService.KlantenBestand.Find(kl => kl.Naam == "Lathouwers");
             Pand pand = RentAVillaRentingService.HuurPanden.Find(p => p.Land == ActieveLanden.Frankrijk);
             int aantalPersonen = 6;
-            Reservatie testReservatie = RentAVillaRentingService.ReservatieBuilder.MaakReservatie(pand, particulier, reservatiePeriode, aantalPersonen);
+            Reservatie testReservatie =
+                RentAVillaRentingService.ReservatieBuilder.MaakReservatie(pand, particulier, reservatiePeriode, aantalPersonen);
             RentAVillaRentingService.ReservatieBoek.Add(testReservatie);
 
             Assert.IsTrue(RentAVillaRentingService.ReservatieBoek.GetAll().Count == 1);
-            Assert.IsTrue(!RentAVillaRentingService.ReservatieBoek.PandIsVrijVoorPeriode(pand,reservatiePeriode));
+            Assert.IsTrue(!RentAVillaRentingService.ReservatieBoek.PandIsVrijVoorPeriode(pand, reservatiePeriode));
         }
+
         [TestMethod]
         public void GivenPandenKlantenAndReservationMade_CannotAddReservationTwiceToReservatieBoek()
         {
@@ -107,9 +109,10 @@ namespace SndrLth.RentAVilla.DomainTests.TODO
             Klant particulier = RentAVillaRentingService.KlantenBestand.Find(kl => kl.Naam == "Lathouwers");
             Pand pand = RentAVillaRentingService.HuurPanden.Find(p => p.Land == ActieveLanden.Frankrijk);
             int aantalPersonen = 6;
-            Reservatie testReservatie = RentAVillaRentingService.ReservatieBuilder.MaakReservatie(pand, particulier, reservatiePeriode, aantalPersonen);
+            Reservatie testReservatie =
+                RentAVillaRentingService.ReservatieBuilder.MaakReservatie(pand, particulier, reservatiePeriode, aantalPersonen);
             RentAVillaRentingService.ReservatieBoek.Add(testReservatie);
-            Assert.ThrowsException<ArgumentException>(()=>RentAVillaRentingService.ReservatieBoek.Add(testReservatie));
+            Assert.ThrowsException<ArgumentException>(() => RentAVillaRentingService.ReservatieBoek.Add(testReservatie));
 
             Assert.IsTrue(RentAVillaRentingService.ReservatieBoek.GetAll().Count == 1);
             Assert.IsTrue(!RentAVillaRentingService.ReservatieBoek.PandIsVrijVoorPeriode(pand, reservatiePeriode));
@@ -125,7 +128,7 @@ namespace SndrLth.RentAVilla.DomainTests.TODO
             RentAVillaRentingService.AfroepContracten.Add(new AfroepContract(klant,
                 pand,
                 new Periode("01/04/2019",
-                    ("01/09/2019")),
+                    "01/09/2019"),
                 overnachtingsQuota,
                 vastePrijsPromotie));
         }

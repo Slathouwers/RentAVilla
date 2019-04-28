@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SndrLth.RentAVilla.Domain;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SndrLth.RentAVilla.Domain.Enums;
 using SndrLth.RentAVilla.Domain.Klanten;
 using SndrLth.RentAVilla.Domain.Panden;
@@ -13,8 +11,9 @@ namespace SndrLth.RentAVilla.DomainTests
     [TestClass]
     public class ReservatieFixtures
     {
-        private static PandBuilder _pandBuilder = new PandBuilder();
-        private static PrijsOfferteBuilder _prijsOfferteBuilder = new PrijsOfferteBuilder(new Promoties());
+        private static readonly PandBuilder _pandBuilder = new PandBuilder();
+        private static readonly PrijsOfferteBuilder _prijsOfferteBuilder = new PrijsOfferteBuilder(new Promoties());
+
         [TestMethod]
         public void PandReserverenVoorPeriodeOpNaamVanKlant()
         {

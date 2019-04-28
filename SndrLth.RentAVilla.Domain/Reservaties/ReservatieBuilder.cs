@@ -33,6 +33,7 @@ namespace SndrLth.RentAVilla.Domain.Reservaties
                 throw new ArgumentException($"Reservatie voor {reservatiePeriode.AantalNachten} " +
                                             $"nachten voldoet niet aan minimum van {pand.MinVerblijfsduur} nachten");
             PrijsOfferte prijsOfferte = _prijsOfferteBuilder.GetPrijsOfferte(pand, reservatiePeriode, klant, aantalPersonen);
+
             return new Reservatie(pand, klant, reservatiePeriode, aantalPersonen, prijsOfferte);
         }
     }

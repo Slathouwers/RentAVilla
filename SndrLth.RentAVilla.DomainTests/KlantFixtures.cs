@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SndrLth.RentAVilla.Domain;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SndrLth.RentAVilla.Domain.Enums;
 using SndrLth.RentAVilla.Domain.Klanten;
 
@@ -12,7 +10,7 @@ namespace SndrLth.RentAVilla.DomainTests
         [TestMethod]
         public void KlantHeeftPropertiesCategorieEnNaam()
         {
-            Klant klant = new Klant(new KlantCategorie( KlantCategorieNaam.Particulier), "Lathouwers");
+            Klant klant = new Klant(new KlantCategorie(KlantCategorieNaam.Particulier), "Lathouwers");
             Assert.IsTrue(klant.Categorie.Naam == KlantCategorieNaam.Particulier && klant.Naam.Equals("Lathouwers"));
         }
     }

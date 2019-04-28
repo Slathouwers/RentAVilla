@@ -5,8 +5,8 @@ namespace SndrLth.RentAVilla.Domain.Reservaties
 {
     public class Periode
     {
-        private DateTime eind;
-        private DateTime start;
+        private DateTime _eind;
+        private DateTime _start;
 
         public Periode(DateTime start, DateTime eind)
         {
@@ -16,25 +16,25 @@ namespace SndrLth.RentAVilla.Domain.Reservaties
 
         public Periode(string startDateString, string eindDateString)
         {
-            if (!DateTime.TryParse(startDateString, out start) ||
-                !DateTime.TryParse(eindDateString, out eind))
+            if (!DateTime.TryParse(startDateString, out _start) ||
+                !DateTime.TryParse(eindDateString, out _eind))
                 throw new ArgumentException($"Start('{startDateString}') or Eind('{eindDateString}') string do not have valid date formats!");
         }
 
         public DateTime Eind
         {
-            get => eind;
+            get => _eind;
             set
             {
-                if (start == null || value.Date.CompareTo(start.Date) <= 0)
+                if (_start == null || value.Date.CompareTo(_start.Date) <= 0)
                     throw new ArgumentException("Ongeldige Periode: eind is kleiner of gelijk aan start!");
-                eind = value;
+                _eind = value;
             }
         }
         public DateTime Start
         {
-            get => start;
-            set => start = value;
+            get => _start;
+            set => _start = value;
         }
         public int AantalNachten => Eind.Date.Subtract(Start.Date).Days;
 
@@ -50,7 +50,7 @@ namespace SndrLth.RentAVilla.Domain.Reservaties
 
         public override string ToString()
         {
-            return $"Start: {start.ToString("dd/MM/yyyy")}, Eind: {eind.ToString("dd/MM/yyyy")}.";
+            return $"Start: {_start.ToString("dd/MM/yyyy")}, Eind: {_eind.ToString("dd/MM/yyyy")}.";
         }
 
         /// <summary>
