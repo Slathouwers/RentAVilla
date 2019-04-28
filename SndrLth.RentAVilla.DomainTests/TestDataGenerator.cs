@@ -74,14 +74,30 @@ namespace SndrLth.RentAVilla.DomainTests
                 .MetPrijzen((SchoonmaakPrijs)GetRandomDoubleBetween(50, 150),
                             (Waarborg)GetRandomDoubleBetween(500, 950),
                             (PersoonsToeslagPerNacht)GetRandomDoubleBetween(10, 25))
-                .MetLimieten(GetRandomIntegerBetween(2, 15),
+                .MetLimieten(GetRandomIntegerBetween(6, 15),
                              GetRandomIntegerBetween(1, 6))
                 .Get();
             p.TariefKalender = GetTariefKalender();
             p.TarievenLijst = GetTestTarievenLijst();
             return p;
         }
-
+        public static Pand GetTestPand(ActieveLanden actieveLand)
+        {
+            Pand p = _pandBuilder
+                .CreatePand("testpand")
+                .MetLocation(actieveLand,
+                    GetRegio(),
+                    "TestPlaats")
+                .MetPrijzen((SchoonmaakPrijs)GetRandomDoubleBetween(50, 150),
+                    (Waarborg)GetRandomDoubleBetween(500, 950),
+                    (PersoonsToeslagPerNacht)GetRandomDoubleBetween(10, 25))
+                .MetLimieten(GetRandomIntegerBetween(6, 15),
+                    GetRandomIntegerBetween(1, 6))
+                .Get();
+            p.TariefKalender = GetTariefKalender();
+            p.TarievenLijst = GetTestTarievenLijst();
+            return p;
+        }
         public static Staffelkorting GetGroteOmzetStaffelkorting()
         {
             int minimumAantalNachten = 7;

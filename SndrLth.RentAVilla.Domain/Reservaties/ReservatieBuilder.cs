@@ -8,12 +8,14 @@ namespace SndrLth.RentAVilla.Domain.Reservaties
 {
     public class ReservatieBuilder
     {
-        private PrijsOfferteBuilder _prijsOfferteBuilder;
+        private readonly PrijsOfferteBuilder _prijsOfferteBuilder;
 
         public ReservatieBuilder(PrijsOfferteBuilder offerteBuilder)
         {
             _prijsOfferteBuilder = offerteBuilder;
         }
+
+
         public Reservatie MaakReservatie(Pand pand, Klant klant, Periode reservatiePeriode, int aantalPersonen)
         {
             // pand beschikbaar voor reservatiePeriode?

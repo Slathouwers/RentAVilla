@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using SndrLth.RentAVilla.Domain.Panden;
 
 namespace SndrLth.RentAVilla.Domain.Reservaties
 {
@@ -13,15 +14,15 @@ namespace SndrLth.RentAVilla.Domain.Reservaties
             _reservaties = new Collection<Reservatie>();
         }
 
-        public IEnumerable<Reservatie> GetAll()
+        public List<Reservatie> GetAll()
         {
-            return _reservaties.AsEnumerable();
+            return _reservaties.ToList();
         }
         //Add
         public void Add(Reservatie reservatie)
         {
             if(_reservaties.Any(res => res.Pand == reservatie.Pand && res.ReservatiePeriode.Overlapt(reservatie.ReservatiePeriode))) throw new ArgumentException("Pand reeds gereserveerd in deze periode");
-            _reservaties.Append(reservatie);
+           _reservaties = _reservaties.Append(reservatie);
         }
         //Remove
         public void Remove(Reservatie reservatie)
@@ -35,6 +36,11 @@ namespace SndrLth.RentAVilla.Domain.Reservaties
             {
                 if (_reservaties.Any(res => res.Pand == reservatie.Pand && res.ReservatiePeriode.Overlapt(nacht))) yield return nacht;
             }
-        }        
+        }
+
+        public bool PandIsVrijVoorPeriode(Pand pand, Periode periode)
+        {
+            return !_reservaties.Any(res => res.Pand == pand && res.ReservatiePeriode.Overlapt(periode));
+        }
     }
 }

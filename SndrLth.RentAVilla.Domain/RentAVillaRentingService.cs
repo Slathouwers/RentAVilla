@@ -26,16 +26,16 @@ namespace SndrLth.RentAVilla.Domain
 
         public RentAVillaRentingService()
         {
-            PandBuilder = new PandBuilder();
-            HuurPanden = new HuurPandCatalogus();
-            ReservatieBoek = new ReservatieBoek();
-            Promoties = new Promoties();
+            PandBuilder = new PandBuilder(); //tested
+            HuurPanden = new HuurPandCatalogus(); //tested
+            ReservatieBoek = new ReservatieBoek(); 
+            Promoties = new Promoties();  //tested
             PrijsOfferteBuilder = new PrijsOfferteBuilder(Promoties);
             ReservatieBuilder = new ReservatieBuilder(PrijsOfferteBuilder);
-            KlantenBestand = new KlantenBestand();
-            KlantCategorieën = new List<KlantCategorie>();
-            AfroepContracten = new List<AfroepContract>();
-            KlantBuilder = new KlantBuilder(KlantCategorieën);
+            KlantenBestand = new KlantenBestand(); //tested
+            KlantCategorieën = new List<KlantCategorie>(); //tested
+            AfroepContracten = new List<AfroepContract>(); //tested
+            KlantBuilder = new KlantBuilder(KlantCategorieën); //tested
 
         }
 
