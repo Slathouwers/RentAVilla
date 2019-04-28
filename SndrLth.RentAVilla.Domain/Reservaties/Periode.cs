@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SndrLth.RentAVilla.Domain
+namespace SndrLth.RentAVilla.Domain.Reservaties
 {
     public class Periode
     {

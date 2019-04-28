@@ -1,4 +1,7 @@
 ﻿using System.Linq;
+using SndrLth.RentAVilla.Domain.Klanten;
+using SndrLth.RentAVilla.Domain.Panden;
+using SndrLth.RentAVilla.Domain.Reservaties;
 
 namespace SndrLth.RentAVilla.Domain.Prijzen.PrijsOffertes
 {
@@ -6,7 +9,10 @@ namespace SndrLth.RentAVilla.Domain.Prijzen.PrijsOffertes
     {
         private readonly PrijsOfferte _prijsOfferte;
         private readonly Promoties.Promoties _promoties;
-        private Reservatie _reservatie;
+        private Pand _pand;
+        private Periode _reservatiePeriode;
+        private Klant _klant;
+        private int _aantalPersonen;
 
         public PrijsOfferteBuilder(Promoties.Promoties promoties)
         {
@@ -15,9 +21,12 @@ namespace SndrLth.RentAVilla.Domain.Prijzen.PrijsOffertes
             _prijsOfferte = new PrijsOfferte();
         }
 
-        public PrijsOfferte GetPrijsOfferte(Reservatie reservatie)
+        public PrijsOfferte GetPrijsOfferte(Pand pand, Periode reservatiePeriode, Klant klant, int aantalPersonen)
         {
-            _reservatie = reservatie;
+            _pand = pand;
+            _reservatiePeriode = reservatiePeriode;
+            _klant = klant;
+            _aantalPersonen = aantalPersonen;
             AddHuurpijsEnStaffelRegels();
             AddPandRegels();
             AddPromotieRegels();
@@ -32,25 +41,25 @@ namespace SndrLth.RentAVilla.Domain.Prijzen.PrijsOffertes
 
         private void AddPandRegels()
         {
-            _prijsOfferte.Add(_reservatie.Pand.PersoonsToeslagPerNacht, _reservatie.ReservatiePeriode.AantalNachten, _reservatie.AantalPersonen);
-            _prijsOfferte.Add(_reservatie.Pand.SchoonmaakPrijs);
-            _prijsOfferte.Add(_reservatie.Pand.Waarborg);
+            _prijsOfferte.Add(_pand.PersoonsToeslagPerNacht, _reservatiePeriode.AantalNachten, _aantalPersonen);
+            _prijsOfferte.Add(_pand.SchoonmaakPrijs);
+            _prijsOfferte.Add(_pand.Waarborg);
 
         }
 
         private void AddHuurpijsEnStaffelRegels()
         {
             var staffelkorting =
-                _reservatie.Klant.Categorie.Staffelkorting.StaffelTrancheLijst
+                _klant.Categorie.Staffelkorting.StaffelTrancheLijst
                     .Where(
-                        el => el.MinimumAantalNachten <= _reservatie.ReservatiePeriode.AantalNachten)
+                        el => el.MinimumAantalNachten <= _reservatiePeriode.AantalNachten)
                     .Max().TrancheKorting;
-            foreach (var nacht in _reservatie.ReservatiePeriode.GetNachten())
+            foreach (var nacht in _reservatiePeriode.GetNachten())
             {
-                var t = _reservatie.Pand.TariefKalender.GetTariefTypeVoorDatum(nacht);
+                var t = _pand.TariefKalender.GetTariefTypeVoorDatum(nacht);
 
-                _prijsOfferte.Add(_reservatie.Pand.TarievenLijst[t]);
-                _prijsOfferte.Add(staffelkorting.GetConcretePromotieOp(_reservatie.Pand.TarievenLijst[t]));
+                _prijsOfferte.Add(_pand.TarievenLijst[t]);
+                _prijsOfferte.Add(staffelkorting.GetConcretePromotieOp(_pand.TarievenLijst[t]));
             }
         }
     }

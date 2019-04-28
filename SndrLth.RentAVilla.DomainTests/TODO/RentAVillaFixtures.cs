@@ -1,16 +1,15 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SndrLth.RentAVilla.Domain;
 
 namespace SndrLth.RentAVilla.DomainTests.TODO
 {
-    /// <summary>
-    /// RentAVilla is een singleton verantwoordelijk voor het beheren van Panden, Reservaties, Promoties, Klanten, AfroepContracten, Staffelkortingen en Promoties
-    /// </summary>
     [TestClass]
     public class RentAVillaFixtures
     {
+        public RentAVillaRentingService RentAVillaRentingService { get; set; }
         [TestMethod]
-        public void TestMethod1()
+        public void CanCreateRentingServiceApplication()
         {
         }
     }

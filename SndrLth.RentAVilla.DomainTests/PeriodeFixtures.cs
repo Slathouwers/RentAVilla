@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SndrLth.RentAVilla.Domain;
+using SndrLth.RentAVilla.Domain.Reservaties;
 
 namespace SndrLth.RentAVilla.DomainTests
 {

@@ -4,6 +4,7 @@ using SndrLth.RentAVilla.Domain.Enums;
 using SndrLth.RentAVilla.Domain.Klanten;
 using SndrLth.RentAVilla.Domain.Prijzen;
 using SndrLth.RentAVilla.Domain.Prijzen.Promoties;
+using SndrLth.RentAVilla.Domain.Reservaties;
 
 namespace SndrLth.RentAVilla.DomainTests
 {
@@ -16,16 +17,6 @@ namespace SndrLth.RentAVilla.DomainTests
             string naam = "Grote Omzet";
             Staffelkorting staffelTest = new Staffelkorting(naam);
             Assert.IsTrue(staffelTest.Naam.Equals(naam));
-        }
-        [TestMethod]
-        public void SetToepasbareKlantCategoriën()
-        {
-            string naam = "Grote Omzet";
-            Staffelkorting staffelTest = new Staffelkorting(naam);
-            staffelTest.KlantCategorieLijst.Add(KlantCategorieNaam.Reisagentschap);
-            staffelTest.KlantCategorieLijst.Add(KlantCategorieNaam.Reisbroker);
-            Assert.IsTrue(staffelTest.KlantCategorieLijst.Contains(KlantCategorieNaam.Reisbroker));
-            Assert.IsTrue(staffelTest.KlantCategorieLijst.Contains(KlantCategorieNaam.Reisagentschap));
         }
         [TestMethod]
         public void VoegStaffelTranchesToe()

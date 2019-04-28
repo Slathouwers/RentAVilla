@@ -2,16 +2,19 @@
 using System.Linq;
 using SndrLth.RentAVilla.Domain.Klanten;
 using SndrLth.RentAVilla.Domain.Panden;
-using SndrLth.RentAVilla.Domain.Prijzen;
 using SndrLth.RentAVilla.Domain.Prijzen.PrijsOffertes;
 
-namespace SndrLth.RentAVilla.Domain
+namespace SndrLth.RentAVilla.Domain.Reservaties
 {
-    public class Reservatie
+    public class ReservatieBuilder
     {
         private PrijsOfferteBuilder _prijsOfferteBuilder;
 
-        public Reservatie(Pand pand, Klant klant, Periode reservatiePeriode, int aantalPersonen, PrijsOfferteBuilder prijsOfferteBuilder)
+        public ReservatieBuilder(PrijsOfferteBuilder offerteBuilder)
+        {
+            _prijsOfferteBuilder = offerteBuilder;
+        }
+        public Reservatie MaakReservatie(Pand pand, Klant klant, Periode reservatiePeriode, int aantalPersonen)
         {
             // pand beschikbaar voor reservatiePeriode?
             if (pand.GetOnbeschikbareNachten(reservatiePeriode).Any())
@@ -27,18 +30,8 @@ namespace SndrLth.RentAVilla.Domain
             if (pand.MinVerblijfsduur > reservatiePeriode.AantalNachten)
                 throw new ArgumentException($"Reservatie voor {reservatiePeriode.AantalNachten} " +
                                             $"nachten voldoet niet aan minimum van {pand.MinVerblijfsduur} nachten");
-
-            Pand = pand;
-            Klant = klant;
-            ReservatiePeriode = reservatiePeriode;
-            AantalPersonen = aantalPersonen;
-            _prijsOfferteBuilder = prijsOfferteBuilder;
+            PrijsOfferte prijsOfferte = _prijsOfferteBuilder.GetPrijsOfferte(pand, reservatiePeriode, klant, aantalPersonen);
+            return new Reservatie(pand, klant, reservatiePeriode, aantalPersonen, prijsOfferte);
         }
-
-        public Pand Pand { get; }
-        public Klant Klant { get; }
-        public Periode ReservatiePeriode { get; }
-        public int AantalPersonen { get; }
     }
-
 }

@@ -7,6 +7,7 @@ namespace SndrLth.RentAVilla.Domain.Klanten
         public KlantCategorie(KlantCategorieNaam naam)
         {
             Naam = naam;
+            Staffelkorting = new Staffelkorting();
         }
 
         public KlantCategorie(KlantCategorieNaam naam, Staffelkorting staffelkorting)

@@ -9,7 +9,6 @@ namespace SndrLth.RentAVilla.Domain.Klanten
         public Staffelkorting()
         {
             Naam = "Geen Korting";
-            KlantCategorieLijst = new List<KlantCategorieNaam>();
             StaffelTrancheLijst = new List<StaffelTranche>();
             StaffelTrancheLijst.Add(new StaffelTranche(1, new PercentuelePromotie(0)));
 
@@ -18,12 +17,10 @@ namespace SndrLth.RentAVilla.Domain.Klanten
         public Staffelkorting(string naam)
         {
             Naam = naam;
-            KlantCategorieLijst = new List<KlantCategorieNaam>();
             StaffelTrancheLijst = new List<StaffelTranche>();
         }
 
         public string Naam { get; }
-        public List<KlantCategorieNaam> KlantCategorieLijst { get; set; }
         public List<StaffelTranche> StaffelTrancheLijst { get; set; }
     }
 }

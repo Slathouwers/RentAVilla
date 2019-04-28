@@ -5,6 +5,7 @@ using SndrLth.RentAVilla.Domain.Enums;
 using SndrLth.RentAVilla.Domain.Klanten;
 using SndrLth.RentAVilla.Domain.Prijzen;
 using SndrLth.RentAVilla.Domain.Prijzen.Promoties;
+using SndrLth.RentAVilla.Domain.Reservaties;
 
 namespace SndrLth.RentAVilla.DomainTests
 {

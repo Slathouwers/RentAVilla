@@ -6,6 +6,7 @@ using SndrLth.RentAVilla.Domain.Prijzen;
 using SndrLth.RentAVilla.Domain.Prijzen.PandPrijzen;
 using SndrLth.RentAVilla.Domain.Prijzen.PrijsOffertes;
 using SndrLth.RentAVilla.Domain.Prijzen.Promoties;
+using SndrLth.RentAVilla.Domain.Reservaties;
 
 namespace SndrLth.RentAVilla.DomainTests
 {
@@ -102,13 +103,13 @@ namespace SndrLth.RentAVilla.DomainTests
             PercentuelePromotie reservatieKorting = new PercentuelePromotie(promotiePeriode, -0.10, offerte); 
             PercentuelePromotie huurPrijsPromotie = new PercentuelePromotie(promotiePeriode, -0.5, huurPrijsPerNacht);
 
-            offerte.Add(huurPrijsPerNacht , 7);
+            offerte.Add(huurPrijsPerNacht , aantalNachten);
             offerte.Add(waarborg);
             offerte.Add(schoonmaak);
-            offerte.Add(persoonsToeslagPerNacht, 6*7);
+            offerte.Add(persoonsToeslagPerNacht, aantalNachten * aantalPersonen);
             offerte.Add(vastePrijsPromotie);
             offerte.Add(reservatieKorting);
-            offerte.Add(huurPrijsPromotie,7);
+            offerte.Add(huurPrijsPromotie, aantalNachten);
             Assert.IsTrue(offerte.Waarde != 0);
         }
     }

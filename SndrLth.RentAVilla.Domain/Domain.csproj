@@ -51,6 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Klanten\AfroepContract.cs" />
+    <Compile Include="Klanten\KlantBuilder.cs" />
+    <Compile Include="Klanten\KlantenBestand.cs" />
     <Compile Include="Prijzen\PrijsOffertes\PrijsOfferteBuilder.cs" />
     <Compile Include="Prijzen\Promoties\BasePromotieComponent.cs" />
     <Compile Include="Enums\KlantCategorieNaam.cs" />
@@ -65,7 +67,7 @@
     <Compile Include="Prijzen\IPrijs.cs" />
     <Compile Include="Klanten\Klant.cs" />
     <Compile Include="Panden\Pand.cs" />
-    <Compile Include="Periode.cs" />
+    <Compile Include="Reservaties\Periode.cs" />
     <Compile Include="Enums\PrijsEenheid.cs" />
     <Compile Include="Prijzen\Promoties\PercentuelePromotie.cs" />
     <Compile Include="Prijzen\PandPrijzen\PersoonsToeslagPerNacht.cs" />
@@ -77,12 +79,15 @@
     <Compile Include="Prijzen\Promoties\Promoties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Enums\Tarief.cs" />
-    <Compile Include="Reservatie.cs" />
+    <Compile Include="RentAVillaRentingService.cs" />
+    <Compile Include="Reservaties\Reservatie.cs" />
     <Compile Include="Klanten\Staffelkorting.cs" />
     <Compile Include="Klanten\StaffelTranche.cs" />
-    <Compile Include="Tarieven\TariefKalender.cs" />
-    <Compile Include="Tarieven\TariefKalenderRegistratie.cs" />
-    <Compile Include="Tarieven\TarievenLijst.cs" />
+    <Compile Include="Reservaties\ReservatieBuilder.cs" />
+    <Compile Include="Reservaties\ReservatieBoek.cs" />
+    <Compile Include="Panden\Tarieven\TariefKalender.cs" />
+    <Compile Include="Panden\Tarieven\TariefKalenderRegistratie.cs" />
+    <Compile Include="Panden\Tarieven\TarievenLijst.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

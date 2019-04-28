@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using SndrLth.RentAVilla.Domain.Enums;
 using SndrLth.RentAVilla.Domain.Prijzen.PandPrijzen;
+using SndrLth.RentAVilla.Domain.Reservaties;
 using SndrLth.RentAVilla.Domain.Tarieven;
 
 namespace SndrLth.RentAVilla.Domain.Panden

@@ -1,4 +1,5 @@
 ﻿using SndrLth.RentAVilla.Domain.Prijzen.Promoties;
+using SndrLth.RentAVilla.Domain.Reservaties;
 
 namespace SndrLth.RentAVilla.Domain.Klanten
 {
