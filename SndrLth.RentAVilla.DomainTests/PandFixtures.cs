@@ -10,13 +10,13 @@ namespace SndrLth.RentAVilla.DomainTests
     [TestClass]
     public class PandFixtures
     {
-        private static readonly PandBuilder pandBuilder = new PandBuilder();
-        public Pand Pand { get; set; } = pandBuilder.CreatePand("testvilla").Get();
+        private static readonly PandBuilder PandBuilder = new PandBuilder();
+        public Pand Pand { get; set; } = PandBuilder.CreatePand("testvilla").Get();
 
         [TestMethod]
         public void NewPandCreated()
         {
-            Pand = pandBuilder.CreatePand("testvilla").Get();
+            Pand = PandBuilder.CreatePand("testvilla").Get();
             Assert.IsInstanceOfType(Pand, typeof(Pand));
         }
 
