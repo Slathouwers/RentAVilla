@@ -9,12 +9,14 @@ namespace SndrLth.RentAVilla.Domain.Klanten
         public AfroepContract(Klant klant, Pand pand, Periode periode, int overnachtingsQuota, VastePrijsPromotie vastePrijsPromotie)
         {
             Klant = klant;
+            Pand = pand;
             Periode = periode;
             OvernachtingsQuota = overnachtingsQuota;
             VastePrijsPromotie = vastePrijsPromotie;
         }
 
         public Klant Klant { get; }
+        public Pand Pand { get; }
         public Periode Periode { get; }
         public int OvernachtingsQuota { get; }
         public VastePrijsPromotie VastePrijsPromotie { get; }

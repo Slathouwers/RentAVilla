@@ -1,8 +1,5 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SndrLth.RentAVilla.Domain;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SndrLth.RentAVilla.Domain.Enums;
-using SndrLth.RentAVilla.Domain.Prijzen;
 using SndrLth.RentAVilla.Domain.Prijzen.PandPrijzen;
 using SndrLth.RentAVilla.Domain.Prijzen.Promoties;
 using SndrLth.RentAVilla.Domain.Reservaties;
@@ -18,9 +15,10 @@ namespace SndrLth.RentAVilla.DomainTests
             Periode periode = new Periode("22/04/2019", "26/04/2019");
             double waarde = -250.00;
             VastePrijsPromotie promotie = new VastePrijsPromotie(periode, waarde);
-            Assert.IsTrue(promotie.GetType() == typeof(VastePrijsPromotie));
+            Assert.IsTrue(promotie != null);
             Assert.IsTrue(promotie.Waarde == -250.00 && promotie.ToepassingsEenheid == PrijsEenheid.PerReservatie);
         }
+
         [TestMethod]
         public void PercentuelePromotieHeeftPeriodeEnIsPrijsComponent()
         {

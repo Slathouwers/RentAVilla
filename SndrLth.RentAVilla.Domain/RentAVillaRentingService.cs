@@ -1,35 +1,21 @@
-﻿using SndrLth.RentAVilla.Domain.Klanten;
+﻿using System.Collections.Generic;
+using SndrLth.RentAVilla.Domain.Klanten;
 using SndrLth.RentAVilla.Domain.Panden;
-using SndrLth.RentAVilla.Domain.Prijzen.Promoties;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SndrLth.RentAVilla.Domain.Prijzen.PrijsOffertes;
+using SndrLth.RentAVilla.Domain.Prijzen.Promoties;
 using SndrLth.RentAVilla.Domain.Reservaties;
 
 namespace SndrLth.RentAVilla.Domain
 {
     public class RentAVillaRentingService
     {
-        public HuurPandCatalogus HuurPanden { get; private set; }
-        public PandBuilder PandBuilder { get; private set; }
-        public ReservatieBoek ReservatieBoek { get; private set; }
-        public ReservatieBuilder ReservatieBuilder { get; private set; }
-        public PrijsOfferteBuilder PrijsOfferteBuilder { get; private set; }
-        public Promoties Promoties{ get; private set; }
-        public KlantenBestand KlantenBestand { get; private set; }
-        public KlantBuilder KlantBuilder { get; private set; }
-        public List<AfroepContract> AfroepContracten { get; private set; }
-        public List<KlantCategorie> KlantCategorieën { get; private set; }
 
         public RentAVillaRentingService()
         {
             PandBuilder = new PandBuilder(); //tested
             HuurPanden = new HuurPandCatalogus(); //tested
-            ReservatieBoek = new ReservatieBoek(); 
-            Promoties = new Promoties();  //tested
+            ReservatieBoek = new ReservatieBoek();
+            Promoties = new Promoties(); //tested
             PrijsOfferteBuilder = new PrijsOfferteBuilder(Promoties);
             ReservatieBuilder = new ReservatieBuilder(PrijsOfferteBuilder);
             KlantenBestand = new KlantenBestand(); //tested
@@ -39,5 +25,15 @@ namespace SndrLth.RentAVilla.Domain
 
         }
 
+        public HuurPandCatalogus HuurPanden { get; }
+        public PandBuilder PandBuilder { get; }
+        public ReservatieBoek ReservatieBoek { get; }
+        public ReservatieBuilder ReservatieBuilder { get; }
+        public PrijsOfferteBuilder PrijsOfferteBuilder { get; }
+        public Promoties Promoties { get; }
+        public KlantenBestand KlantenBestand { get; }
+        public KlantBuilder KlantBuilder { get; }
+        public List<AfroepContract> AfroepContracten { get; }
+        public List<KlantCategorie> KlantCategorieën { get; }
     }
 }

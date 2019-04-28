@@ -27,6 +27,6 @@ namespace SndrLth.RentAVilla.Domain.Prijzen.PrijsOffertes
         public double Subtotaal =>
             PrijsComponent.Waarde * Eenheden;
         public bool IsReturnable =>
-            PrijsComponent.GetType() == typeof(Waarborg);
+            PrijsComponent is Waarborg;
     }
 }

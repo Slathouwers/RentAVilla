@@ -9,10 +9,10 @@ namespace SndrLth.RentAVilla.Domain.Prijzen.PrijsOffertes
     {
         private readonly PrijsOfferte _prijsOfferte;
         private readonly Promoties.Promoties _promoties;
+        private int _aantalPersonen;
+        private Klant _klant;
         private Pand _pand;
         private Periode _reservatiePeriode;
-        private Klant _klant;
-        private int _aantalPersonen;
 
         public PrijsOfferteBuilder(Promoties.Promoties promoties)
         {

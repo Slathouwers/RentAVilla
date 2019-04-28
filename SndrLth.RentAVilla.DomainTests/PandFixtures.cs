@@ -1,17 +1,16 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SndrLth.RentAVilla.Domain;
 using SndrLth.RentAVilla.Domain.Enums;
 using SndrLth.RentAVilla.Domain.Panden;
 
 namespace SndrLth.RentAVilla.DomainTests
 {
-    
+
 
     [TestClass]
     public class PandFixtures
     {
-        private static PandBuilder pandBuilder = new PandBuilder();
+        private static readonly PandBuilder pandBuilder = new PandBuilder();
         public Pand Pand { get; set; } = pandBuilder.CreatePand("testvilla").Get();
 
         [TestMethod]
@@ -65,6 +64,7 @@ namespace SndrLth.RentAVilla.DomainTests
         {
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => Pand.MaxAantalPersonen = -1);
         }
+
         [TestMethod]
         public void ZeroMaxAantalPersonenThrowsArgOutOfRangeException()
         {

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using SndrLth.RentAVilla.Domain.Enums;
 using SndrLth.RentAVilla.Domain.Prijzen.Promoties;
 
 namespace SndrLth.RentAVilla.Domain.Klanten

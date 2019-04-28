@@ -1,6 +1,4 @@
-﻿using SndrLth.RentAVilla.Domain.Enums;
-
-namespace SndrLth.RentAVilla.Domain.Klanten
+﻿namespace SndrLth.RentAVilla.Domain.Klanten
 {
     public class Klant
     {

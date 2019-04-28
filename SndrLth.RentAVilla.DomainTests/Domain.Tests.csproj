@@ -63,7 +63,7 @@
     <Compile Include="PrijsFixtures.cs" />
     <Compile Include="ReservatieFixtures.cs" />
     <Compile Include="HuurPandCatalogusFixtures.cs" />
-    <Compile Include="TODO\RentAVillaFixtures.cs" />
+    <Compile Include="RentAVillaFixtures.cs" />
     <Compile Include="StaffelTrancheFixtures.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -74,6 +74,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TODO\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,8 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SndrLth.RentAVilla.Domain;
-using SndrLth.RentAVilla.Domain.Enums;
 using SndrLth.RentAVilla.Domain.Klanten;
-using SndrLth.RentAVilla.Domain.Prijzen;
 using SndrLth.RentAVilla.Domain.Prijzen.Promoties;
 using SndrLth.RentAVilla.Domain.Reservaties;
 
@@ -18,6 +15,7 @@ namespace SndrLth.RentAVilla.DomainTests
             Staffelkorting staffelTest = new Staffelkorting(naam);
             Assert.IsTrue(staffelTest.Naam.Equals(naam));
         }
+
         [TestMethod]
         public void VoegStaffelTranchesToe()
         {
@@ -26,13 +24,13 @@ namespace SndrLth.RentAVilla.DomainTests
             PercentuelePromotie trancheKorting = new PercentuelePromotie(geldigheidsPeriode, -0.5 / 7);
             StaffelTranche testTranche0 = new StaffelTranche(minimumAantalNachten, trancheKorting);
             minimumAantalNachten = 1;
-            trancheKorting = new PercentuelePromotie(geldigheidsPeriode,0);
+            trancheKorting = new PercentuelePromotie(geldigheidsPeriode, 0);
             StaffelTranche testTranche1 = new StaffelTranche(minimumAantalNachten, trancheKorting);
             minimumAantalNachten = 14;
-            trancheKorting = new PercentuelePromotie(geldigheidsPeriode, -1+(11.9/14));
+            trancheKorting = new PercentuelePromotie(geldigheidsPeriode, -1 + 11.9 / 14);
             StaffelTranche testTranche2 = new StaffelTranche(minimumAantalNachten, trancheKorting);
             minimumAantalNachten = 28;
-            trancheKorting = new PercentuelePromotie(geldigheidsPeriode, -1 + (22.4 / 28));
+            trancheKorting = new PercentuelePromotie(geldigheidsPeriode, -1 + 22.4 / 28);
             StaffelTranche testTranche3 = new StaffelTranche(minimumAantalNachten, trancheKorting);
 
             string naam = "Grote Omzet";
@@ -42,9 +40,11 @@ namespace SndrLth.RentAVilla.DomainTests
             staffelTest.StaffelTrancheLijst.Add(testTranche2);
             staffelTest.StaffelTrancheLijst.Add(testTranche3);
             Assert.IsTrue(staffelTest.StaffelTrancheLijst.Count == 4);
-            Assert.IsTrue(0.00001 > (5.6/28 + staffelTest.StaffelTrancheLijst
-                .Find(tr => tr.MinimumAantalNachten == 28)
-                .TrancheKorting.Percent));
+            Assert.IsTrue(0.00001 >
+                          5.6 / 28 +
+                          staffelTest.StaffelTrancheLijst
+                              .Find(tr => tr.MinimumAantalNachten == 28)
+                              .TrancheKorting.Percent);
 
         }
     }

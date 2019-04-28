@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using SndrLth.RentAVilla.Domain.Enums;
 using SndrLth.RentAVilla.Domain.Prijzen.PandPrijzen;
 
-namespace SndrLth.RentAVilla.Domain.Tarieven
+namespace SndrLth.RentAVilla.Domain.Panden.Tarieven
 {
     public class TarievenLijst : List<HuurPrijsPerNacht>
     {

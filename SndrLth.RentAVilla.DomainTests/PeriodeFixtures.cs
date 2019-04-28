@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SndrLth.RentAVilla.Domain;
 using SndrLth.RentAVilla.Domain.Reservaties;
 
 namespace SndrLth.RentAVilla.DomainTests
@@ -9,16 +8,16 @@ namespace SndrLth.RentAVilla.DomainTests
     [TestClass]
     public class PeriodeFixtures
     {
-        private static DateTime start;
-        private static DateTime eind;
+        private static DateTime _start;
+        private static DateTime _eind;
 
         private static IEnumerable<object[]> GetInvalidPeriodeDefinitions =>
             new List<object[]>
             {
-                new object[] {start, start},
-                new object[] {start, start.AddHours(4)},
-                new object[] {start, start.AddHours(-4)},
-                new object[] {eind, start},
+                new object[] {_start, _start},
+                new object[] {_start, _start.AddHours(4)},
+                new object[] {_start, _start.AddHours(-4)},
+                new object[] {_eind, _start},
                 new object[] {DateTime.Parse("2019-04-02"), DateTime.Parse("2019-04-01")},
                 new object[] {DateTime.Parse("2019-04-02"), DateTime.Parse("2019-03-02")}
             };
@@ -59,16 +58,17 @@ namespace SndrLth.RentAVilla.DomainTests
         [ClassInitialize]
         public static void ClassInitialize(TestContext t)
         {
-            start = DateTime.Today;
-            eind = start.AddDays(7);
+            _start = DateTime.Today;
+            _eind = _start.AddDays(7);
         }
 
         [TestMethod]
         public void CreatedPeriodHasStartAndEnd()
         {
-            var periode = new Periode(start, eind);
-            Assert.IsTrue(periode.Start.Equals(start) && periode.Eind.Equals(eind));
+            var periode = new Periode(_start, _eind);
+            Assert.IsTrue(periode.Start.Equals(_start) && periode.Eind.Equals(_eind));
         }
+
         [TestMethod]
         public void PeriodeConstructorParsesDateStringArgument()
         {
@@ -77,12 +77,13 @@ namespace SndrLth.RentAVilla.DomainTests
             var periode = new Periode(startString, eindString);
             Assert.IsTrue(periode.Start.Equals(DateTime.Parse(startString)) && periode.Eind.Equals(DateTime.Parse(eindString)));
         }
+
         [TestMethod]
         public void PeriodeConstructorThrowsExceptionOnInvalidStringArguments()
         {
             string startString = "abc9";
             string eindString = ".....";
-            Assert.ThrowsException<ArgumentException>(()=> new Periode(startString, eindString));
+            Assert.ThrowsException<ArgumentException>(() => new Periode(startString, eindString));
         }
 
         [DataTestMethod]
@@ -98,11 +99,12 @@ namespace SndrLth.RentAVilla.DomainTests
         {
             Assert.IsTrue(p1.Overlapt(p2) == caseResult, $"Case '{caseDefinition}' failed.");
         }
-        [TestMethod()]
+
+        [TestMethod]
         public void OverlaptDatumTest()
         {
-            var periode = new Periode(start, eind);
-            Assert.IsTrue(periode.Overlapt(start.AddDays(1)));
+            var periode = new Periode(_start, _eind);
+            Assert.IsTrue(periode.Overlapt(_start.AddDays(1)));
         }
     }
 }

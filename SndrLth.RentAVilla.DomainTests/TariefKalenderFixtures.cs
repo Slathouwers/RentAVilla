@@ -1,9 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SndrLth.RentAVilla.Domain;
 using SndrLth.RentAVilla.Domain.Enums;
+using SndrLth.RentAVilla.Domain.Panden.Tarieven;
 using SndrLth.RentAVilla.Domain.Reservaties;
-using SndrLth.RentAVilla.Domain.Tarieven;
 
 namespace SndrLth.RentAVilla.DomainTests
 {
@@ -19,12 +18,15 @@ namespace SndrLth.RentAVilla.DomainTests
                 new TariefKalenderRegistratie(DateTime.Parse("16/06/2019"), Tarief.Hoogseizoen)
             };
         }
+
         [TestMethod]
         public void TariefKalenderCreated()
         {
             //Pandspecifieke Tarief en Planningsschema -> Laagseizoen vanaf 15/03, Onbeschikbaar vanaf 10/06, Tussenseizoen vanaf 20/07 etc...
             var tk = PandTariefKalenderVoorbeeld();
+            Assert.IsTrue(tk.GetType() == typeof(TariefKalender));
         }
+
         [TestMethod]
         public void TariefKalendarKanOpzoeken()
         {
@@ -35,6 +37,7 @@ namespace SndrLth.RentAVilla.DomainTests
             Assert.IsTrue(tk.GetTariefTypeVoorDatum(testdate) == Tarief.Laagseizoen);
             Assert.IsTrue(tk.GetTariefTypeVoorDatum(testdate2) == Tarief.Onbeschikbaar);
         }
+
         [TestMethod]
         public void TariefKalenderTarievenOverschreven()
         {
@@ -43,12 +46,10 @@ namespace SndrLth.RentAVilla.DomainTests
             var periode = new Periode("15/04/2019", "17/07/2019");
             tk.InsertWithOverride(periode, Tarief.Laagseizoen);
 
-            foreach (DateTime d in periode.GetNachten())
-            {
-                Assert.IsTrue( tk.GetTariefTypeVoorDatum(d) == Tarief.Laagseizoen);
-            }
+            foreach (DateTime d in periode.GetNachten()) Assert.IsTrue(tk.GetTariefTypeVoorDatum(d) == Tarief.Laagseizoen);
             Assert.IsTrue(tk.GetTariefTypeVoorDatum(periode.Eind) == Tarief.Hoogseizoen);
         }
+
         [TestMethod]
         public void TariefKalenderUpdateIndienBeschikbaar()
         {
@@ -58,13 +59,10 @@ namespace SndrLth.RentAVilla.DomainTests
             tk.InsertWhereBeschikbaar(periode, Tarief.Laagseizoen);
 
             foreach (DateTime d in periode.GetNachten())
-            {
-                if(d < DateTime.Parse("16/05/2019") && d>= DateTime.Parse("16/04/2019"))
-                {
+                if (d < DateTime.Parse("16/05/2019") && d >= DateTime.Parse("16/04/2019"))
                     Assert.IsTrue(tk.GetTariefTypeVoorDatum(d) == Tarief.Onbeschikbaar);
-                }
-               else Assert.IsTrue(tk.GetTariefTypeVoorDatum(d) == Tarief.Laagseizoen);
-            }
+                else
+                    Assert.IsTrue(tk.GetTariefTypeVoorDatum(d) == Tarief.Laagseizoen);
             Assert.IsTrue(tk.GetTariefTypeVoorDatum(periode.Eind) == Tarief.Hoogseizoen);
         }
     }
