@@ -6,8 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SndrLth.RentAVilla.Domain.Klanten;
 using SndrLth.RentAVilla.Domain.Panden;
 using SndrLth.RentAVilla.Domain.Prijzen.PandPrijzen;
+using SndrLth.RentAVilla.Domain.Prijzen.Promoties;
+using SndrLth.RentAVilla.Domain.Reservaties;
 using SndrLth.RentAVilla.Domain.Tarieven;
 
 namespace SndrLth.RentAVilla.DomainTests
@@ -77,10 +80,32 @@ namespace SndrLth.RentAVilla.DomainTests
             p.TariefKalender = GetTariefKalender();
             p.TarievenLijst = GetTestTarievenLijst();
             return p;
+        }
 
+        public static Staffelkorting GetGroteOmzetStaffelkorting()
+        {
+            int minimumAantalNachten = 7;
+            Periode geldigheidsPeriode = new Periode("22/04/2019", "31/12/2999");
+            PercentuelePromotie trancheKorting = new PercentuelePromotie(geldigheidsPeriode, -0.5 / 7);
+            StaffelTranche testTranche0 = new StaffelTranche(minimumAantalNachten, trancheKorting);
+            minimumAantalNachten = 1;
+            trancheKorting = new PercentuelePromotie(geldigheidsPeriode, 0);
+            StaffelTranche testTranche1 = new StaffelTranche(minimumAantalNachten, trancheKorting);
+            minimumAantalNachten = 14;
+            trancheKorting = new PercentuelePromotie(geldigheidsPeriode, -1 + (11.9 / 14));
+            StaffelTranche testTranche2 = new StaffelTranche(minimumAantalNachten, trancheKorting);
+            minimumAantalNachten = 28;
+            trancheKorting = new PercentuelePromotie(geldigheidsPeriode, -1 + (22.4 / 28));
+            StaffelTranche testTranche3 = new StaffelTranche(minimumAantalNachten, trancheKorting);
 
+            string naam = "Grote Omzet";
+            Staffelkorting staffelTest = new Staffelkorting(naam);
+            staffelTest.StaffelTrancheLijst.Add(testTranche0);
+            staffelTest.StaffelTrancheLijst.Add(testTranche1);
+            staffelTest.StaffelTrancheLijst.Add(testTranche2);
+            staffelTest.StaffelTrancheLijst.Add(testTranche3);
 
-
+            return staffelTest;
         }
         
     }

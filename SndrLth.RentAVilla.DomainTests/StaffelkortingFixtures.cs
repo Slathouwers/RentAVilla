@@ -24,10 +24,10 @@ namespace SndrLth.RentAVilla.DomainTests
             int minimumAantalNachten = 7;
             Periode geldigheidsPeriode = new Periode("22/04/2019", "31/12/2999");
             PercentuelePromotie trancheKorting = new PercentuelePromotie(geldigheidsPeriode, -0.5 / 7);
-            StaffelTranche testTranche1 = new StaffelTranche(minimumAantalNachten, trancheKorting);
+            StaffelTranche testTranche0 = new StaffelTranche(minimumAantalNachten, trancheKorting);
             minimumAantalNachten = 1;
             trancheKorting = new PercentuelePromotie(geldigheidsPeriode,0);
-            StaffelTranche testTranche0 = new StaffelTranche(minimumAantalNachten, trancheKorting);
+            StaffelTranche testTranche1 = new StaffelTranche(minimumAantalNachten, trancheKorting);
             minimumAantalNachten = 14;
             trancheKorting = new PercentuelePromotie(geldigheidsPeriode, -1+(11.9/14));
             StaffelTranche testTranche2 = new StaffelTranche(minimumAantalNachten, trancheKorting);
